@@ -1,0 +1,37 @@
+ng-scrollbar {
+  --scrollbar-size: 5px;
+  --scrollbar-thumb-color: #7797aeb4;
+  --scrollbar-border-radius: 4px;
+}
+
+.availablesList {
+  grid-column: 2;
+  justify-self: stretch;
+  height: 500px;
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.78;
+  letter-spacing: 0.23px;
+  margin-left: 50px;
+  margin-right: 50px;
+  color: #465b6b;
+}
+
+
+
+.availableProtocolLabel {
+  width: 430px;
+  height: 50px;
+  color: #465b6b;
+  font-size: 16px;
+  font-weight: inherit;
+  line-height: 3em;
+
+}
+
+ 
+
+
+

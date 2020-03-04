@@ -1,0 +1,566 @@
+<div style="height: 700px;
+
+">
+  <!-- panel info header -->
+  <mat-expansion-panel class="mat-elevation-z6" style="position: relative;
+  z-index: 2;">
+    <mat-expansion-panel-header [collapsedHeight]="'70px'" style=" width: 1322px; height: auto; ">
+      <mat-panel-title style="height: 65px;
+      ">
+        <mat-icon svgIcon="patient-icon" style="margin-top: 10px ;
+       margin-left: 15px;
+       margin-right: 20px;
+       width: 40px;
+       height: 40px;"></mat-icon>
+        <p style=" width: 1366px; height: 65px;  font-size: 20px;color: #7797ae; margin-top: 20px;">
+
+          <span style="font-weight: bold;">{{SelectedPatient.PatientName}}</span> Patient #{{SelectedPatient.PatientID}}
+          {{SelectedPatient.PatientGender}} |
+          {{SelectedPatient.PatientAge}} years
+        </p>
+
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="mainGrid" style="
+   width: 1297px;
+   height: 165px;
+   display: grid;
+   grid-template-columns: 1fr 1fr  1fr 1fr 1fr;
+   grid-template-rows: auto ;
+   border-radius: 2px;
+   background-color: #f1f4f6;">
+      <div style="grid-column: 1;
+      width: 400px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto ;
+                 ">
+        <span style="font-weight: bold;
+        color: #4a4a4a;
+        font-size: 15px;
+                    grid-column: 1;
+                    grid-row: 1;
+                    margin-top: 20px;
+    margin-left: 40px;
+        ">DOB</span>
+        <span style="font-weight: normal;
+          font-size: 15px;
+        color: #4a4a4a;
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 20px;
+">{{SelectedPatient.PatientBirthDate | date}}</span>
+        <span style="font-weight: bold;
+          font-size: 15px;
+color: #4a4a4a;
+            grid-column: 1;
+            grid-row: 2;
+            margin-top: 20px;
+    margin-left: 40px;
+">Accession#</span>
+        <span style="font-weight: normal;
+          font-size: 15px;
+
+color: #4a4a4a;
+grid-column: 2;
+grid-row: 2;
+margin-top: 20px;
+">{{SelectedPatient.PatientAccessionNumber}}</span>
+        <span style="font-weight: bold;
+          font-size: 15px;
+color: #4a4a4a;
+            grid-column: 1;
+            grid-row: 3;
+            margin-top: 20px;
+    margin-left: 40px;
+">Description</span>
+        <span style="font-weight: normal;
+          font-size: 15px;
+          margin-top: 20px;
+color: #4a4a4a;
+grid-column: 2;
+grid-row: 3;
+text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+">{{SelectedPatient.PatientStudyDescription}}</span>
+      </div>
+      <mat-divider [vertical]="true" style="grid-column: 2;
+
+      border-right-width: 1px;
+      border-color:#41505b;
+      margin: 10px;
+      "></mat-divider>
+      <div style="grid-column: 3;
+       width: 400px;
+               ">
+
+        <div class="alert" style="
+       grid-column: 2;
+       display: grid;
+       border-radius: 2px;
+       background-color: #f1f4f6;">
+          <div style="
+          grid-row: 1;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          ">
+            <mat-icon svgIcon="alert-icon" style="
+            margin-top: 10px;
+            grid-column:1 ;
+          margin-top: 20px ;
+        margin-left: 15px;
+        margin-right: 20px;
+        width: 20px;
+        height: 20px;"></mat-icon>
+            <span style="grid-column: 2; text-align: right; width: 42px;
+            height: 20px;
+            font-weight: bold;
+        font-size: 15px;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            margin-top: 20px;
+            color: #4a4a4a;">Alerts</span>
+          </div>
+        </div>
+
+      </div>
+      <mat-divider [vertical]="true" style="grid-column: 4;
+      border-right-width: 1px;
+      border-color:#41505b;
+       margin: 10px;
+      "></mat-divider>
+      <div style="grid-column: 5;
+       width: 400px;
+               ">
+        <div style="display: inline;
+
+       grid-template-columns: 1fr 1fr;
+       grid-template-rows: auto auto auto auto ;
+       "></div>
+        <span style="grid-column: 1;
+        -ms-grid-column-span: 2;
+  text-align: right;
+  width: 42px;
+ height: 20px;
+ font-weight: bold;
+font-size: 15px;
+ font-stretch: normal;
+ font-style: normal;
+ line-height: 2.5em;
+ letter-spacing: normal;
+ margin-top: 20px;
+ margin-left: 40px;
+ color: #4a4a4a;">Important Notes</span>
+      </div>
+
+    </div>
+  </mat-expansion-panel>
+  <!-- main grid -->
+  <div style="
+  display: grid;
+  height: 630px;
+  grid-template-columns: 925px 441px;
+  ">
+    <!-- select protocol label -->
+
+    <label style="width: 547px;
+    grid-column: 1;
+    grid-row: 1;
+      height: 50px;
+      margin-top: 25px;
+      margin-left:35px ;
+      font-size: 32px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      color: #465b6b;">Select Injection Protocol</label>
+
+
+    <!-- priors and availables main grid-->
+    <mat-radio-group aria-label="Select an option" (change)="planSelected($event)" style=" grid-column: 1;
+    grid-row: 1;">
+      <div style="display: grid;
+
+
+      margin-top: 75px;
+      margin-left: 35px;
+      grid-template-columns: 300px 500px;
+      ">
+        <!-- priors -->
+        <div style="grid-column: 1;
+       justify-self: stretch;
+        height: 50px;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 2.78;
+        letter-spacing: 0.23px;
+        color: #465b6b;
+      ">
+          <label> Patient Priors ({{NumberOfPriors}})</label>
+          <mat-divider style="width: 280px;
+        border-right-width: 1px;
+        border-color:#7797ae;
+        "></mat-divider>
+          <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" style="max-height: 500px;">
+
+
+            <div *ngFor="let priorProtocol of PatientPriorsList" style="
+            width: 28px;
+            height: 100px;
+            margin-top: 10px;
+        ">
+              <mat-radio-button labelPosition="before" [value]="priorProtocol" style="
+                      width: 280px;
+                      margin-bottom:10px ;
+              ">
+                <!-- prior exam details -->
+                <div style="
+                                                        display: grid;
+                                                        grid-template-rows: 20px auto ;
+                                                        width: 245px;
+                                                        height: 110px;
+
+                  ">
+                  <!-- study name  -->
+                  <span style=" font-size: 16px;
+                    grid-row: 1;
+                    color: #465b6b;">{{priorProtocol.studyName}}</span>
+                  <!-- study details -->
+                  <div style="
+                   grid-row: 2;
+                   line-height:150%;
+                   width: 258px;
+                    height: 66px;
+                    font-size: 15px;
+                    margin-top: 15px;
+                    color: #7797ae;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    ">
+                    {{priorProtocol.studyDate | date}}<br>
+                    {{priorProtocol.studyDescription}}<br>
+                    Weight {{priorProtocol.weight}} | kVp {{priorProtocol.kvp}}
+
+                  </div>
+                </div>
+              </mat-radio-button>
+              <mat-divider style="width: 280px;
+            grid-row: 3;
+            margin-top: -15px;
+            grid-auto-flow: row;
+        border-right-width: 1px;
+        border-color:#7797ae;
+        "></mat-divider>
+            </div>
+
+          </ng-scrollbar>
+
+        </div>
+
+        <!-- availables -->
+        <div class="availablesList">
+          <label> All available ({{NumberOfTemplates}}) </label>
+          <mat-divider style="
+        width: 500px;
+              border-right-width: 1px;
+              border-color:#7797ae;
+              margin-bottom: 5px;
+              "></mat-divider>
+          <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" style="
+        max-width: 520px;
+        max-height: 495px;
+        width: 520px;">
+            <div *ngFor="let protocol of ProtocolTemplatesList">
+              <mat-expansion-panel class="mat-elevation-z0" style="width:500px">
+                <mat-expansion-panel-header [collapsedHeight]="'60px'" style=" height: auto; ">
+                  <mat-panel-title style="width: 179px;
+              height: 50px;
+              font-size: 22px;
+              font-weight: 500;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: 2.27;
+              letter-spacing: 0.28px;
+              color: #7797ae;">
+                    {{protocol[0]}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-radio-button *ngFor="let plantemplate of protocol[1]" labelPosition="before" [value]="plantemplate"
+                  style="
+                      width: 280px;">
+                  <div class="availableProtocolLabel">
+                    <span>{{plantemplate.name}}</span>
+                  </div>
+                </mat-radio-button>
+              </mat-expansion-panel>
+              <mat-divider style="
+                width: 500px;
+                border-right-width: 1px;
+                border-color:#7797ae;
+                margin-top: 5px;
+                "></mat-divider>
+            </div>
+
+          </ng-scrollbar>
+        </div>
+      </div>
+    </mat-radio-group>
+
+
+
+    <!-- preview panel -->
+    <div style="grid-column: 2;
+      background-color:#eceff4;
+      display: grid;
+      height: 630px;
+      grid-template-rows: 50px 20px 170px 60px 500px;
+      z-index: 1;
+      ">
+      <!-- info icon -->
+      <div style="width: 53px;
+      justify-self: end;
+      margin-top: 15px;
+                  grid-row:1;
+                  height: 44px;
+                  border-radius: 22px 0 0 22px;
+                  box-shadow: 0 0 9px 2px rgba(104, 147, 178, 0.25);
+                  background-color: #465b6b;">
+        <mat-icon svgIcon="exclamationWhite-icon" style="
+                  margin-top: 10px;
+    margin-left: 10px;"></mat-icon>
+      </div>
+      <!-- select action label -->
+      <!-- <span style="
+      text-align: center;
+      grid-row:2;
+      height: 26px;
+      font-size: 18px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.73;
+      letter-spacing: -0.01px;
+      text-align: center;
+      color: #41505b;">Select protocol to view preview</span> -->
+      <!-- totals cards -->
+      <div style="display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 10px;
+       grid-row: 3;
+       margin: 20px;">
+        <!-- total contrast -->
+        <mat-card [@simpleFadeAnimation]="'in'" class="mat-elevation-z5" style="grid-column:1;
+        width: 90px;
+        height: 100px;
+        border-radius: 4px;
+        background-color: white;">
+          <div style="
+          margin: 20px 10px 20px 15px ;
+          text-align: left;
+          font-size: 18px;
+          font-weight: bold;
+          opacity: 0.8;
+          color: #465B6B;">Total Contrast</div>
+          <div style="
+          display: grid; grid-template-columns: auto auto;">
+            <mat-icon svgIcon="contrast-icon" style="
+            grid-column: 1;
+           "></mat-icon>
+            <div style="font-size: 22px;
+           font-weight: normal;
+           color: #41505b;">— — — </div>
+          </div>
+        </mat-card>
+        <!-- total saline -->
+        <mat-card [@simpleFadeAnimation]="'in'" class="mat-elevation-z5" style="grid-column:2;
+        width: 90px;
+        height: 100px;
+        border-radius: 4px;
+        background-color: white;">
+          <div style="
+          margin: 20px 10px 20px 15px ;
+          text-align: left;
+          font-size: 18px;
+          font-weight: bold;
+          opacity: 0.8;
+          color: #465B6B;">Total Saline</div>
+          <div style="
+          display: grid; grid-template-columns: auto auto;">
+            <mat-icon svgIcon="saline-icon" style="
+            grid-column: 1;
+           "></mat-icon>
+            <div style="font-size: 22px;
+           font-weight: normal;
+           color: #41505b;">— — — </div>
+          </div>
+        </mat-card>
+        <!-- total duration -->
+        <mat-card [@simpleFadeAnimation]="'in'" class="mat-elevation-z5" style="grid-column:3;
+          width: 90px;
+          height: 100px;
+          border-radius: 4px;
+          background-color: white;">
+          <div style="
+            margin: 20px 10px 20px 15px ;
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0.8;
+            color: #465B6B;">Total Duration</div>
+          <div style="
+            display: grid; grid-template-columns: auto auto;">
+
+            <mat-icon style="
+             grid-column: 1;
+            ">access_time</mat-icon>
+            <div style="font-size: 22px;
+             font-weight: normal;
+             color: #41505b;">— — — </div>
+          </div>
+        </mat-card>
+      </div>
+
+      <!-- pressure picker -->
+      <mat-form-field class="mat-elevation-z5" style="border-radius: 4px;
+      grid-row: 4;
+      grid-column: 1;
+      background-color: white;
+      padding: 5px;
+      justify-self: center;
+      height: 60px;
+      max-height: 500px;
+      width: 400px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #41505b;
+      " [@slideInDown]="slideInDown">
+        <mat-label style="width: 150px;
+         margin-left: 10px;
+         margin-top: 10px;
+        height: 24px;
+        opacity: 0.8;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0px;
+        color: #465b6b;">Pressure Limit ({{PressureUnit}})</mat-label>
+        <mat-select style="max-height: 700px; margin-left: 10px; width: 373px;  ">
+
+          <mat-option *ngFor="let limitValue of PressureLimits" [value]="limitValue" style="
+font-weight: bold;
+text-align: center;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 12px;
+font-size: 15px;
+width: 380px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.6;
+  letter-spacing: -0.02px;
+  text-align: center;
+  color: #41505b;
+border-radius: 4px;
+background-color: #b9c7d233;">
+            {{limitValue}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+
+      <!-- protocol preview -->
+
+      <div
+      [@flash]="flash"
+      style="grid-row: 5;
+      margin-top: 20px;
+      grid-column: 1;
+      display: grid;
+      height: 500px;
+      grid-template-rows: 75px auto;
+      ">
+
+        <!-- header for volume/flowrate/etc -->
+        <div style="grid-row: 1;
+        margin-top: 20px;
+        margin-left: 30px;
+        margin-right: 30px;
+        grid-template-rows: 20px auto;
+      display: grid; grid-template-columns: 1fr  1fr  1fr  1fr;
+      ">
+          <span
+            style="grid-column: 1; grid-row: 1; justify-self: center; color: #41505b; font-weight: bold;">Phase</span>
+          <span style="grid-column: 1; grid-row: 2; color: #41505b;  "> </span>
+          <span style="grid-column: 2; grid-row: 1;justify-self: center;  color: #41505b; font-weight: bold;">Flow
+            Rate</span>
+          <span style="grid-column: 2; grid-row: 2; justify-self: center;  color: #41505b;  ">(ml/sec)</span>
+
+          <span
+            style="grid-column: 3; grid-row: 1; justify-self: center;  color: #41505b; font-weight: bold;">Volume</span>
+          <span style="grid-column: 3; grid-row: 2; justify-self: center;  color: #41505b; ">(ml)</span>
+
+          <span
+            style="grid-column: 4; grid-row: 1; justify-self: center;  color: #41505b; font-weight: bold;">Duration</span>
+          <span style="grid-column: 4; grid-row: 2; justify-self: center;  color: #41505b;  ">(mm:ss)</span>
+
+
+
+        </div>
+
+        <!-- actual steps preview -->
+        <div *ngIf="SelectedProtocol; else emptySelection" style="margin-left: 20px;">
+          <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" style="max-height: 230px;">
+            <!-- step -->
+            <div *ngFor="let step of (SelectedProtocol.standardProtocols|| [])">
+              <!-- phases-->
+            <div *ngFor="let phase of step.phases"
+            style="display: grid;
+            margin-top: 10px;
+            grid-template-columns: 1fr  1fr  1fr  1fr;
+            "
+            >
+            <mat-icon *ngIf="phase.contrastRatio==0" svgIcon="saline-icon" style="
+            justify-self: center;
+            grid-column: 1;
+           "></mat-icon>
+           <mat-icon *ngIf="phase.contrastRatio==100" svgIcon="contrast-icon" style="
+           justify-self: center;
+           grid-column: 1;
+          "></mat-icon>
+566664as
+          <mat-icon *ngIf="phase.type==7"   style="
+          justify-self: center;
+          grid-column: 1;
+         ">water-percent</mat-icon>
+              {{phase.type}}
+
+
+            </div>
+            </div>
+          </ng-scrollbar>
+        </div>
+        <ng-template  #emptySelection>
+          <p  style="text-align: center; font-weight: bold; font-size: 20px; margin-top: 90px; color: #7797ae ">
+            Select a protocol...
+          </p>
+        </ng-template>
+
+      </div>
+
+      <!-- end of the window -->
+
+    </div>
+
+
+
+  </div>
+</div>

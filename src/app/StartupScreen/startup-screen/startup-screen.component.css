@@ -1,0 +1,56 @@
+.flowTitle {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 60px;
+  width: 475px;
+  height: 22px;
+  mix-blend-mode: multiply;
+  font-size: 25px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.88;
+  letter-spacing: 0px;
+  color: #b9c7d2;
+}
+
+.flowTitleDetails{
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 60px;
+  width: 475px;
+  height: 54px;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  color: #41505b;
+}
+
+
+
+.infoPanel {
+  text-align: left;
+  margin-left: 34px;
+  width: 633px;
+  height: 700px;
+
+  background-color: #f1f4f6;
+}
+
+.child {
+  padding: 10rem;
+  text-align: center;
+
+}
+
+.grid-parent {
+  display: grid;
+  text-align: center;
+  height: 700px;
+  grid-template-columns: 1fr 1fr
+}

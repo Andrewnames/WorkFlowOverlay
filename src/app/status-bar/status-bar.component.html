@@ -1,0 +1,129 @@
+<div style="display: grid;
+    position: absolute;
+    z-index: 2;
+grid-template-columns: 925px 1fr;
+grid-template-rows: auto auto;
+width: 1366px;
+height: 68px;
+text-align: right;
+background-color: #7797ae;">
+
+  <!-- pwl label -->
+  <label *ngIf="IsPwlLabelVisible" style="
+grid-column: 1;
+grid-row: 1;
+font-size: 22px;
+font-weight: bold;
+line-height: 3em;
+text-align: left;
+    margin-left: 40px;
+color: rgb(255, 255, 255);
+letter-spacing: 1.5px;">Patient worklist</label>
+
+  <!-- navigation buttons -->
+  <mat-button-toggle-group *ngIf="IsSelectScreen" #group="matButtonToggleGroup" style="background-color: #7797ae;
+  z-index: 2;
+  width: 925px;
+position: absolute;
+height: 65px;
+  ">
+    <mat-button-toggle value="selectProtocol" [checked]="SelectInjectionButtonActive">
+      1. Select Injection Protocol
+    </mat-button-toggle>
+    <mat-button-toggle value="editPatient" [disabled]="!IsReadyToAddPatientData">
+      2. Add Patient data
+    </mat-button-toggle>
+    <mat-button-toggle value="injectionReview" [disabled]="!IsReadyForReview"> 3. Review Injection
+    </mat-button-toggle>
+    <mat-button-toggle value="proceedAndLock" class="lockButton" [disabled]="!IsReadyToLock">
+      Lock
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <!-- learning mode and exit -->
+  <div style="
+grid-column: 2;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+grid-row: 1;
+text-align: right;
+
+background-color: #7797ae;">
+
+    <label style="width: 87px;
+
+height: 11px;
+margin-right: 10px;
+color: rgb(255, 255, 255);
+font-size: 20px;
+font-weight: 500;
+font-stretch: normal;
+font-style: normal;
+line-height: 0.92;
+letter-spacing: -0.03px;">Learning Mode</label>
+    <mat-slide-toggle aria-label="Learning Mode" style="width: 80px;
+height: 35px;
+margin-right: 15px;
+vertical-align: middle;
+background-color: transparent;
+object-fit: contain;">
+
+    </mat-slide-toggle>
+
+    <!-- faq button -->
+    <button *ngIf="IsSettingAndMaintenanceVisible" mat-fab style="width: 50px;
+height: 50px;
+margin-right: 15px;
+vertical-align: middle;
+background-color: transparent;
+object-fit: contain;">
+      <mat-icon style="width: 40px;
+    height: 40px;
+    margin-top: -11px;" svgIcon="question" aria-hidden="false"></mat-icon>
+    </button>
+
+
+    <!-- maintenance button -->
+    <button *ngIf="IsSettingAndMaintenanceVisible" mat-fab style="width: 50px;
+height: 50px;
+margin-right: 15px;
+vertical-align: middle;
+background-color: transparent;
+object-fit: contain;">
+      <mat-icon style="width: 40px;
+    height: 40px;
+    margin-top: -11px;" svgIcon="wrench" aria-hidden="false"></mat-icon>
+    </button>
+
+
+    <!-- settings button -->
+    <button *ngIf="IsSettingAndMaintenanceVisible" mat-fab style="width: 50px;
+height: 50px;
+margin-right: 33px;
+vertical-align: middle;
+background-color: transparent;
+object-fit: contain;">
+      <mat-icon style="width: 40px;
+    height: 40px;
+    margin-top: -11px;" svgIcon="cog-wheel" aria-hidden="false"></mat-icon>
+    </button>
+
+    <!-- exit button -->
+    <button mat-raised-button (click)="exit()" style="
+text-align: right;
+width: 102px;
+height: 68px;
+border-radius: 0px;
+background-color:#7797ae;
+font-size: 15px;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.02px;
+text-align: center;
+color:white
+">Exit</button>
+  </div>
+
+</div>

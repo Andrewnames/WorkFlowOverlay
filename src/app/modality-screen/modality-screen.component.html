@@ -1,0 +1,202 @@
+<div style="width:1366px;
+height: 700px;
+">
+
+  <mat-form-field appearance="standard" style="
+  margin-top: 10px;
+  margin-left: 35px;
+  margin-bottom: 20px;
+  width: 400px;
+  height: 50px;
+  background-color:transparent;
+  color: black;
+  ">
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-label style="width: 330px;
+
+    font-family: HelveticaNeue;
+    font-size: 20px;
+    color: #41505b;">Search by name, accession number...</mat-label>
+    <input class="" matInput (keyup)="applyFilter($event)" style="
+caret-color: black;
+background-color: transparent;
+    ">
+  </mat-form-field>
+
+  <div style="max-height: 620px;
+overflow: overlay;
+">
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="
+  width: 1298px;
+  height: 650px;
+  margin-top: 10px;
+  margin-left: 30px;
+  overflow: auto;
+  ">
+      <!-- alert Column -->
+      <ng-container matColumnDef="alert">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let patient" style=" padding-left: 0;
+      border-bottom-style: none;
+      ">
+          <!-- show alert -->
+          <div *ngIf="patient.IsHavingAlerts" style="
+        text-align: center;
+        width: 45px;
+        height: 64px;
+        opacity: 0.7;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px 0 0 4px;
+        border: solid 1px #6893b2;
+        background-color: #c0d1de;">
+            <mat-icon svgIcon="info-circle" style="margin-top: 20px ;"></mat-icon>
+          </div>
+          <!-- no alerts -->
+          <div *ngIf="!patient.IsHavingAlerts" style="
+          text-align: center;
+          height: 64px;
+          margin-left: 15px;
+          margin-bottom: 10px;
+          border-radius: 4px 0 0 4px;
+          background-color: #eceff4;">
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <mat-text-column name="patient-name1" matColumnDef="patient-name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="
+width: 132px;
+  height: 18px;
+text-align: center;
+font-family: HelveticaNeue;
+font-size: 13px;
+font-weight: bold;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.38;
+letter-spacing: 0.18px;
+color: #41505b;
+"> PATIENT NAME </th>
+        <td mat-cell *matCellDef="let patient" style="
+        border-bottom-style: none;
+      text-align: center;
+      width: 150px;
+      ">
+          <div class="rowWrapper"> {{patient.PatientName}}</div>
+        </td>
+      </mat-text-column>
+
+      <!-- DOB Column -->
+      <mat-text-column name="birth-date1" matColumnDef="birth-date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="
+      font-family: HelveticaNeue;
+      width: 120px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 0.18px;
+      color: #41505b;
+      "> DATE OF BIRTH </th>
+        <td mat-cell *matCellDef="let patient" style="text-align: center;
+        border-bottom-style: none;
+        ">
+          <div class="rowWrapper">{{patient.PatientBirthDate  | date}}</div>
+        </td>
+      </mat-text-column>
+
+      <!-- ID Column -->
+      <mat-text-column name="id1" matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="
+      width: 120px;
+  height: 18px;
+  text-align: center;
+      font-family: HelveticaNeue;
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 0.18px;
+      color: #41505b;
+      "> ID </th>
+        <td mat-cell *matCellDef="let patient" style="text-align: center;
+        border-bottom-style: none;
+        ">
+          <div class="rowWrapper">{{patient.PatientID}}</div>
+        </td>
+      </mat-text-column>
+
+      <!-- study DT Column -->
+      <mat-text-column name="studyDT1" matColumnDef="studyDT">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="
+      font-family: HelveticaNeue;
+      width: 120px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 0.18px;
+      color: #41505b;
+      "> TIME-DATE </th>
+        <td mat-cell *matCellDef="let patient" style="text-align: center;
+        border-bottom-style: none;
+        ">
+          <div class="rowWrapper"> {{patient.PatientStudyDateTime  | date}} </div>
+        </td>
+      </mat-text-column>
+
+      <!-- accession Column -->
+      <mat-text-column name="accessionNumber1" matColumnDef="accessionNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="
+      font-family: HelveticaNeue;
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 0.18px;
+      color: #41505b;
+      "> ACCESSION NUMBER </th>
+        <td mat-cell *matCellDef="let patient" style="text-align: center;
+        border-bottom-style: none;
+        ">
+          <div class="rowWrapper"> {{patient.PatientAccessionNumber}} </div>
+        </td>
+      </mat-text-column>
+
+      <!-- study description Column -->
+      <mat-text-column name="studyDescr1" matColumnDef="studyDescr">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="
+      font-family: HelveticaNeue;
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 0.18px;
+      color: #41505b;
+      "> STUDY DESCRIPTION </th>
+        <td mat-cell *matCellDef="let patient" style="text-align: left;
+        border-bottom-style: none;
+        ">
+          <div class="farRightRowWrapper">
+            <div style="height: 50px;">{{patient.PatientStudyDescription}}</div>
+          </div>
+        </td>
+      </mat-text-column>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" style="margin-bottom: 10px;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="tableRow" (click)="navigateToEdit(row)"></tr>
+    </table>
+  </div>
+</div>
