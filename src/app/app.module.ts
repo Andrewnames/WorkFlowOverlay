@@ -28,7 +28,7 @@ import { DataServiceService } from './DataService.service';
 
 
 import { AppRouting } from './app-routing.module';
-
+import { TicksToDatePipePipe  } from "./utilities/ticksToDatePipe.pipe";
 
 
 @NgModule({
@@ -37,7 +37,8 @@ import { AppRouting } from './app-routing.module';
     StartupScreenComponent,
     StatusBarComponent,
     ModalityScreenComponent,
-    SelectProtocolScreenComponent
+    SelectProtocolScreenComponent,
+    TicksToDatePipePipe
   ],
   imports: [
     BrowserModule,
@@ -61,7 +62,9 @@ import { AppRouting } from './app-routing.module';
     AppRoutingModule,
     AppRouting
   ],
-  providers: [DataServiceService], // here services go to register
+  providers: [DataServiceService,
+    TicksToDatePipePipe
+  ], // here services go to register
   bootstrap: [
     AppComponent
   ]

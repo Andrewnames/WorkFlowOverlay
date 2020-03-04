@@ -166,7 +166,7 @@ font-size: 15px;
   ">
     <!-- select protocol label -->
 
-    <label style="width: 547px;
+    <label [@fadeInRight]="fadeInRight" style="width: 547px;
     grid-column: 1;
     grid-row: 1;
       height: 50px;
@@ -183,14 +183,12 @@ font-size: 15px;
     <mat-radio-group aria-label="Select an option" (change)="planSelected($event)" style=" grid-column: 1;
     grid-row: 1;">
       <div style="display: grid;
-
-
       margin-top: 75px;
       margin-left: 35px;
       grid-template-columns: 300px 500px;
       ">
         <!-- priors -->
-        <div style="grid-column: 1;
+        <div [@fadeInLeft]="fadeInLeft" style="grid-column: 1;
        justify-self: stretch;
         height: 50px;
         font-size: 18px;
@@ -439,7 +437,7 @@ font-size: 15px;
       font-size: 20px;
       font-weight: bold;
       color: #41505b;
-      " [@slideInDown]="slideInDown">
+      " [@fadeInDown]="fadeInDown">
         <mat-label style="width: 150px;
          margin-left: 10px;
          margin-top: 10px;
@@ -479,21 +477,20 @@ background-color: #b9c7d233;">
 
       <!-- protocol preview -->
 
-      <div
-      [@flash]="flash"
-      style="grid-row: 5;
+      <div [@flash]="flash" style="grid-row: 5;
       margin-top: 20px;
       grid-column: 1;
       display: grid;
       height: 500px;
+      width: 440px;
+
       grid-template-rows: 75px auto;
       ">
 
         <!-- header for volume/flowrate/etc -->
         <div style="grid-row: 1;
         margin-top: 20px;
-        margin-left: 30px;
-        margin-right: 30px;
+
         grid-template-rows: 20px auto;
       display: grid; grid-template-columns: 1fr  1fr  1fr  1fr;
       ">
@@ -517,39 +514,80 @@ background-color: #b9c7d233;">
         </div>
 
         <!-- actual steps preview -->
-        <div *ngIf="SelectedProtocol; else emptySelection" style="margin-left: 20px;">
-          <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" style="max-height: 230px;">
-            <!-- step -->
-            <div *ngFor="let step of (SelectedProtocol.standardProtocols|| [])">
-              <!-- phases-->
-            <div *ngFor="let phase of step.phases"
-            style="display: grid;
+
+        <ng-scrollbar *ngIf="SelectedProtocol; else emptySelection" #scrollable track="all"
+          pointerEventsMethod="scrollbar" style="
+            max-width: 520px;
+            max-height: 230px;">
+          <!-- step -->
+          <div *ngFor="let step of (SelectedProtocol.standardProtocols|| [])" style="width: 440px;
+
+            ">
+            <!-- phases-->
+            <div *ngFor="let phase of step.phases" style="display: grid;
             margin-top: 10px;
+            width: 440px;
             grid-template-columns: 1fr  1fr  1fr  1fr;
-            "
-            >
-            <mat-icon *ngIf="phase.contrastRatio==0" svgIcon="saline-icon" style="
+            ">
+              <mat-icon *ngIf="phase.contrastRatio==0" svgIcon="saline-icon" style="
             justify-self: center;
             grid-column: 1;
            "></mat-icon>
-           <mat-icon *ngIf="phase.contrastRatio==100" svgIcon="contrast-icon" style="
+              <mat-icon *ngIf="phase.contrastRatio==100" svgIcon="contrast-icon" style="
            justify-self: center;
            grid-column: 1;
           "></mat-icon>
-
-          <mat-icon *ngIf="phase.type==7"   style="
+              <mat-icon *ngIf="phase.type==6" style="
           justify-self: center;
           grid-column: 1;
-         ">water-percent</mat-icon>
-              {{phase.type}}
+          height: 30px;
+          width: 30px;
+          margin-left: 10px;
+          transform: scale(1.6);
+         ">
+                <svg style="    height: 30px;
+                  width: 30px;">
+                  <defs>
+                    <linearGradient id="grad1">
+                      <stop offset="0%" style="stop-color:rgb(119,203,243);stop-opacity:1" />
+                      <stop offset="50%" style="stop-color:rgb(119,203,243);stop-opacity:1" />
+                      <stop offset="50%" style="stop-color:rgb(164,209,118);stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:rgb(164,209,118);stop-opacity:1" />
+
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M12 3.25S6 10 6 14c0 3.32 2.69 6 6 6a6 6 0 0 0 6-6c0-4-6-10.75-6-10.75m2.47 6.72l1.06 1.06l-6 6l-1.06-1.06M9.75 10A1.25 1.25 0 0 1 11 11.25a1.25 1.25 0 0 1-1.25 1.25a1.25 1.25 0 0 1-1.25-1.25A1.25 1.25 0 0 1 9.75 10m4.5 4.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 14.25 17A1.25 1.25 0 0 1 13 15.75a1.25 1.25 0 0 1 1.25-1.25z"
+                    fill="url(#grad1)" />
+                </svg></mat-icon>
+              <mat-icon *ngIf="phase.type==2" style="
+                  justify-self: center;
+                  grid-column: 1;
+                  color:#41505b;
+                 ">access_time</mat-icon>
+              <mat-icon *ngIf="phase.type==3" style="
+                 justify-self: center;
+                 grid-column: 1;
+                 color:#41505b;
+                "> pause_circle_outline</mat-icon>
+              <span
+                style="grid-column: 2;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.volume}}</span>
+              <span
+                style="grid-column: 3;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.flowRate}}</span>
+
+              <span
+                style="grid-column: 4;   justify-self: center; font-size: 18px;   color: #7797ae; font-weight: normal;">
+                {{phase.durationTicks | ticksToDatePipe: 1 | date:'mm:ss' }}</span>
+
+
 
 
             </div>
-            </div>
-          </ng-scrollbar>
-        </div>
-        <ng-template  #emptySelection>
-          <p  style="text-align: center; font-weight: bold; font-size: 20px; margin-top: 90px; color: #7797ae ">
+          </div>
+        </ng-scrollbar>
+
+        <ng-template #emptySelection>
+          <p style="text-align: center; font-weight: bold; font-size: 20px; margin-top: 90px; color: #7797ae ">
             Select a protocol...
           </p>
         </ng-template>

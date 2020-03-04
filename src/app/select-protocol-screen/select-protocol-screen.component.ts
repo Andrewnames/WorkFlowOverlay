@@ -12,15 +12,20 @@ import { Guid } from 'guid-typescript';
 import { MatRadioChange } from '@angular/material/radio';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeAnimation } from '../animations';
-import { slideInDown } from 'ng-animate';
+import { fadeInDown } from 'ng-animate';
 import { slideInUp } from 'ng-animate';
 import { flash } from 'ng-animate';
+import { fadeInUp } from 'ng-animate';
+import { fadeInRight } from 'ng-animate';
 
+
+import { fadeInLeft } from 'ng-animate';
 import { ProtocolPlan } from '../Models/ProtocolPlan';
 import { StandardProtocol } from '../Models/StandardProtocol';
 import { PhaseType } from '../Models/PhaseType.enum';
 import { ProtocolPhase } from '../Models/ProtocolPhase';
- 
+
+
 
 
 @Component({
@@ -28,8 +33,11 @@ import { ProtocolPhase } from '../Models/ProtocolPhase';
   templateUrl: './select-protocol-screen.component.html',
   styleUrls: ['./select-protocol-screen.component.css'],
   animations: [fadeAnimation,
-    trigger('slideInDown', [transition('* => *', useAnimation(slideInDown, {
+    trigger('fadeInDown', [transition('* => *', useAnimation(fadeInDown, {
       params: { timing: 0.1, delay: 0 }
+    }))]),
+    trigger('fadeInLeft', [transition('* => *', useAnimation(fadeInLeft, {
+      params: { timing: 0.2, d: '30px', delay: 0 }
     }))]),
     trigger('slideInUp', [transition('* => *', useAnimation(slideInUp, {
       params: { timing: 0.1, delay: 0 }
@@ -37,13 +45,23 @@ import { ProtocolPhase } from '../Models/ProtocolPhase';
     trigger('flash', [transition('* => *', useAnimation(flash, {
       params: { timing: 2, delay: 0.5 }
     }))]),
+    trigger('fadeInUp', [transition('* => *', useAnimation(fadeInUp, {
+      params: { timing: 0.25, a: '100px', delay: 0 }
+    }))]),
+    trigger('fadeInRight', [transition('* => *', useAnimation(fadeInRight, {
+      params: { timing: 0.25, a: '100px', delay: 0 }
+    }))]),
+
   ]
 })
 
-export class SelectProtocolScreenComponent implements OnInit {
 
-  slideInDown: any;
+export class SelectProtocolScreenComponent implements OnInit {
+  fadeInDown: any;
   flash: any;
+  fadeInRight: any;
+  fadeInUp: any;
+  fadeInLeft: any;
   NumberOfTemplates = 0; // TODO: these gonna come from  the service
   NumberOfPriors: number = 0;
   PressureUnit = 'PSI';
@@ -121,7 +139,9 @@ export class SelectProtocolScreenComponent implements OnInit {
             newStep.phases = [];
             for (let pindex = 0; pindex < 8; pindex++) {
               const newPhase = new ProtocolPhase();
-              newPhase.type = PhaseType[PhaseType[faker.random.number(pindex)]];
+              newPhase.type = PhaseType[PhaseType[faker.random.arrayElement([0, 1, 2, 3, 6])]];
+
+
               if (newPhase.type === PhaseType.Inject_A) { newPhase.contrastRatio = 100; }
               if (newPhase.type === PhaseType.Inject_B) { newPhase.contrastRatio = 0; }
               newPhase.volume = faker.random.number(100);
