@@ -24,7 +24,9 @@ import { ProtocolPlan } from '../Models/ProtocolPlan';
 import { StandardProtocol } from '../Models/StandardProtocol';
 import { PhaseType } from '../Models/PhaseType.enum';
 import { ProtocolPhase } from '../Models/ProtocolPhase';
-
+import * as AOS from 'aos';
+import 'aos/dist/aos.css';
+import * as TimeSpan from 'timespan';
 
 
 
@@ -63,7 +65,7 @@ export class SelectProtocolScreenComponent implements OnInit {
   fadeInUp: any;
   fadeInLeft: any;
   NumberOfTemplates = 0; // TODO: these gonna come from  the service
-  NumberOfPriors: number = 0;
+  NumberOfPriors = 0;
   PressureUnit = 'PSI';
   PressureLimits: number[] = [100,
     150,
@@ -71,6 +73,10 @@ export class SelectProtocolScreenComponent implements OnInit {
     225,
     250,
     300];
+  TotalSaline = '— — — ';
+  TotalContrast = '— — — ';
+  TotalDuration = '— — — ';
+
   SelectedPatient: PatientModalityTableEntry;
   SelectedProtocol: ProtocolPlan;
   ProtocolTemplatesList: [string, ProtocolPlan[]][]; // tupples  array for protocol drodown
@@ -107,6 +113,8 @@ export class SelectProtocolScreenComponent implements OnInit {
 
   ngOnInit() {
 
+    AOS.init();
+
     this.dataService.currentMessage.subscribe(message => this.processMessage(message));
 
 
@@ -115,21 +123,21 @@ export class SelectProtocolScreenComponent implements OnInit {
     this.ProtocolTemplatesList = [];
 
 
-    //fill up the plan
+    // fill up the plan
     for (const region in AnatomicalRegion) {
       if (isNaN(Number(region))) {
 
         const basicPlansPerRegion = [];
         //  emulate list of plans
         for (let index = 0; index < 2; index++) {
-          let newPlan = new ProtocolPlan();
+          const newPlan = new ProtocolPlan();
           newPlan.name = faker.hacker.noun();
           newPlan.anatomicalRegion = region;
           newPlan.description = faker.hacker.phrase();
           newPlan.uniqueId = Guid.create();
           newPlan.standardProtocols = [];
           // create actual steps
-          for (let index = 0; index < 2; index++) {
+          for (let index = 0; index < 1; index++) {
             const newStep = new StandardProtocol();
             newStep.description = faker.hacker.phrase();
             newStep.isTestInjection = faker.random.boolean();
@@ -137,11 +145,9 @@ export class SelectProtocolScreenComponent implements OnInit {
             newStep.uniqueId = Guid.create();
             // lets make phases
             newStep.phases = [];
-            for (let pindex = 0; pindex < 8; pindex++) {
+            for (let pindex = 0; pindex < 5; pindex++) {
               const newPhase = new ProtocolPhase();
               newPhase.type = PhaseType[PhaseType[faker.random.arrayElement([0, 1, 2, 3, 6])]];
-
-
               if (newPhase.type === PhaseType.Inject_A) { newPhase.contrastRatio = 100; }
               if (newPhase.type === PhaseType.Inject_B) { newPhase.contrastRatio = 0; }
               newPhase.volume = faker.random.number(100);
@@ -161,7 +167,7 @@ export class SelectProtocolScreenComponent implements OnInit {
 
     }
     for (let index = 0; index < 6; index++) {
-      let planFromList = this.ProtocolTemplatesList[index][1][0];
+      const planFromList = this.ProtocolTemplatesList[index][1][0];
       const newPrior = new ArchivedProtocol();
       newPrior.protocolPlan = planFromList;
       newPrior.studyName = 'study of ' + faker.hacker.noun() + ' and ' + faker.hacker.noun();
@@ -198,6 +204,9 @@ export class SelectProtocolScreenComponent implements OnInit {
   }
 
   calculateTotals() {
+    this.TotalContrast = this.totalContrastVolume(this.SelectedProtocol.standardProtocols[0]).toString() + ' ml';
+    this.TotalSaline = this.totalSalineVolume(this.SelectedProtocol.standardProtocols[0]).toString() + ' ml';
+    this.TotalDuration = this.totalDuration(this.SelectedProtocol.standardProtocols[0]).minutes;
 
   }
 
@@ -209,5 +218,66 @@ export class SelectProtocolScreenComponent implements OnInit {
     const randomEnumValue = enumValues[randomIndex];
     return randomEnumValue;
   }
+
+  totalContrastVolume(protocol: StandardProtocol) {
+    let vol = 0.0;
+
+    if (protocol != null && protocol.phases.length > 0) {
+
+      protocol.phases.forEach(phase => {
+        if (phase.contrastRatio === undefined) { return; }
+        const volume = phase.contrastRatio * phase.volume / 100;
+        vol += volume;
+      });
+    }
+    return Math.round(vol);
+  }
+
+  totalSalineVolume(protocol: StandardProtocol) {
+    let vol = 0.0;
+
+    if (protocol != null && protocol.phases.length > 0) {
+      protocol.phases.forEach(phase => {
+        if (phase.contrastRatio === undefined) { return; }
+        const volume = phase.volume - (phase.contrastRatio * phase.volume / 100);
+        vol += volume;
+      });
+    }
+    return Math.round(vol);
+  }
+
+  totalDuration(protocol: StandardProtocol): TimeSpan {
+    let duration = new TimeSpan.TimeSpan();
+
+    if (protocol != null && protocol.phases.length > 0) {
+
+
+      protocol.phases.forEach(phase => {
+        if (phase.type === 3) {
+          duration.addSeconds(phase.pauseSeconds);
+        } else {
+          let roundedSeconds = Math.round(this.transformTicksToDate(phase.durationTicks).getSeconds());
+          duration.addSeconds(roundedSeconds);
+        }
+      });
+    }
+    return duration;
+  }
+
+  transformTicksToDate(ticks: number): Date {
+
+    let epochTicks = 621355968000000000,    // the number of .net ticks at the unix epoch
+      ticksPerMillisecond = 10000,        // there are 10000 .net ticks per millisecond
+      jsTicks = 0,                        // ticks in javascript environment
+      jsDate,                             // Date in javascript environment
+      input = ticks;
+
+    jsTicks = (input - epochTicks) / ticksPerMillisecond;
+
+    jsDate = new Date(jsTicks); // N.B. Js applies local timezone in automatic
+
+    return jsDate;
+  }
+
 
 }

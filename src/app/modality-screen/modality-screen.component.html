@@ -27,7 +27,7 @@ background-color: transparent;
 overflow: overlay;
 ">
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="
+    <table mat-table [dataSource]="dataSource"  style="
   width: 1298px;
   height: 650px;
   margin-top: 10px;
@@ -195,7 +195,8 @@ color: #41505b;
         </td>
       </mat-text-column>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" style="margin-bottom: 10px;"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"
+       style="margin-bottom: 10px;"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="tableRow" (click)="navigateToEdit(row)"></tr>
     </table>
   </div>

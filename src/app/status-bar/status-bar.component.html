@@ -1,4 +1,6 @@
-<div style="display: grid;
+<div
+class="mat-elevation-z15"
+style="display: grid;
     position: absolute;
     z-index: 2;
 grid-template-columns: 925px 1fr;
@@ -21,7 +23,9 @@ color: rgb(255, 255, 255);
 letter-spacing: 1.5px;">Patient worklist</label>
 
   <!-- navigation buttons -->
-  <mat-button-toggle-group *ngIf="IsSelectScreen" #group="matButtonToggleGroup" style="background-color: #7797ae;
+  <mat-button-toggle-group
+
+  *ngIf="IsSelectScreen" #group="matButtonToggleGroup" style="background-color: #7797ae;
   z-index: 2;
   width: 925px;
 position: absolute;

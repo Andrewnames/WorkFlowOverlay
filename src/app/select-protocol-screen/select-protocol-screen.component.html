@@ -204,7 +204,8 @@ font-size: 15px;
         border-right-width: 1px;
         border-color:#7797ae;
         "></mat-divider>
-          <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" style="max-height: 500px;">
+          <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar"
+           style="max-height: 500px;">
 
 
             <div *ngFor="let priorProtocol of PatientPriorsList" style="
@@ -359,20 +360,21 @@ font-size: 15px;
         border-radius: 4px;
         background-color: white;">
           <div style="
-          margin: 20px 10px 20px 15px ;
+          margin: 0px 10px 20px 0px ;
           text-align: left;
           font-size: 18px;
           font-weight: bold;
           opacity: 0.8;
           color: #465B6B;">Total Contrast</div>
           <div style="
+          width: 100px;
           display: grid; grid-template-columns: auto auto;">
             <mat-icon svgIcon="contrast-icon" style="
             grid-column: 1;
            "></mat-icon>
             <div style="font-size: 22px;
            font-weight: normal;
-           color: #41505b;">— — — </div>
+           color: #41505b;">{{TotalContrast}}</div>
           </div>
         </mat-card>
         <!-- total saline -->
@@ -382,20 +384,21 @@ font-size: 15px;
         border-radius: 4px;
         background-color: white;">
           <div style="
-          margin: 20px 10px 20px 15px ;
+          margin: 0px 10px 20px 0px ;
           text-align: left;
           font-size: 18px;
           font-weight: bold;
           opacity: 0.8;
           color: #465B6B;">Total Saline</div>
           <div style="
+          width: 100px;
           display: grid; grid-template-columns: auto auto;">
             <mat-icon svgIcon="saline-icon" style="
             grid-column: 1;
            "></mat-icon>
             <div style="font-size: 22px;
            font-weight: normal;
-           color: #41505b;">— — — </div>
+           color: #41505b;">{{TotalSaline}} </div>
           </div>
         </mat-card>
         <!-- total duration -->
@@ -405,21 +408,21 @@ font-size: 15px;
           border-radius: 4px;
           background-color: white;">
           <div style="
-            margin: 20px 10px 20px 15px ;
+            margin: 0px 10px 20px 0px ;
             text-align: left;
             font-size: 18px;
             font-weight: bold;
             opacity: 0.8;
             color: #465B6B;">Total Duration</div>
           <div style="
+          width: 100px;
             display: grid; grid-template-columns: auto auto;">
 
             <mat-icon style="
              grid-column: 1;
             ">access_time</mat-icon>
             <div style="font-size: 22px;
-             font-weight: normal;
-             color: #41505b;">— — — </div>
+             color: #7797ae; font-weight: normal;">{{TotalDuration}}</div>
           </div>
         </mat-card>
       </div>
@@ -516,19 +519,27 @@ background-color: #b9c7d233;">
         <!-- actual steps preview -->
 
         <ng-scrollbar *ngIf="SelectedProtocol; else emptySelection" #scrollable track="all"
-          pointerEventsMethod="scrollbar" style="
+          pointerEventsMethod="scrollbar"
+
+          style="
             max-width: 520px;
             max-height: 230px;">
           <!-- step -->
-          <div *ngFor="let step of (SelectedProtocol.standardProtocols|| [])" style="width: 440px;
+          <div *ngFor="let step of (SelectedProtocol.standardProtocols|| [])"
+           style="width: 440px;
 
-            ">
+            "
+data-aos="fade-left" data-aos-duration="500" data-aos-easing="ease-in-out"
+            >
             <!-- phases-->
             <div *ngFor="let phase of step.phases" style="display: grid;
             margin-top: 10px;
             width: 440px;
             grid-template-columns: 1fr  1fr  1fr  1fr;
-            ">
+            "
+
+
+            >
               <mat-icon *ngIf="phase.contrastRatio==0" svgIcon="saline-icon" style="
             justify-self: center;
             grid-column: 1;
@@ -571,6 +582,7 @@ background-color: #b9c7d233;">
                  color:#41505b;
                 "> pause_circle_outline</mat-icon>
               <span
+
                 style="grid-column: 2;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.volume}}</span>
               <span
                 style="grid-column: 3;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.flowRate}}</span>
