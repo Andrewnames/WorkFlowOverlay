@@ -26,7 +26,7 @@ import { PhaseType } from '../Models/PhaseType.enum';
 import { ProtocolPhase } from '../Models/ProtocolPhase';
 import * as AOS from 'aos';
 import 'aos/dist/aos.css';
-import * as TimeSpan from 'timespan';
+import * as moment from 'moment';
 
 
 
@@ -67,6 +67,13 @@ export class SelectProtocolScreenComponent implements OnInit {
   NumberOfTemplates = 0; // TODO: these gonna come from  the service
   NumberOfPriors = 0;
   PressureUnit = 'PSI';
+
+
+
+  // navigation triggers
+  IsProtocolSelectionActive = false;
+  IsPatientDataEditActive = false;
+
   PressureLimits: number[] = [100,
     150,
     200,
@@ -184,6 +191,20 @@ export class SelectProtocolScreenComponent implements OnInit {
   }
   processMessage(message: string): void {
 
+    switch (message) {
+      case 'editPatient':
+        this.IsPatientDataEditActive = true;
+        this.IsProtocolSelectionActive = false;
+        break;
+      case 'selectProtocol':
+        this.IsProtocolSelectionActive = true;
+        this.IsPatientDataEditActive = false;
+        break;
+
+      default:
+        break;
+    }
+
   }
 
   planSelected(planselectedChange: MatRadioChange) { // assign selected protocol from prior or new template
@@ -206,7 +227,7 @@ export class SelectProtocolScreenComponent implements OnInit {
   calculateTotals() {
     this.TotalContrast = this.totalContrastVolume(this.SelectedProtocol.standardProtocols[0]).toString() + ' ml';
     this.TotalSaline = this.totalSalineVolume(this.SelectedProtocol.standardProtocols[0]).toString() + ' ml';
-    this.TotalDuration = this.totalDuration(this.SelectedProtocol.standardProtocols[0]).minutes;
+    this.TotalDuration = this.totalDuration(this.SelectedProtocol.standardProtocols[0]);
 
   }
 
@@ -246,22 +267,22 @@ export class SelectProtocolScreenComponent implements OnInit {
     return Math.round(vol);
   }
 
-  totalDuration(protocol: StandardProtocol): TimeSpan {
-    let duration = new TimeSpan.TimeSpan();
+  totalDuration(protocol: StandardProtocol): string {
+    let duration = moment.duration();
 
     if (protocol != null && protocol.phases.length > 0) {
-
-
       protocol.phases.forEach(phase => {
         if (phase.type === 3) {
-          duration.addSeconds(phase.pauseSeconds);
+          duration.add(phase.pauseSeconds, 'seconds');
         } else {
-          let roundedSeconds = Math.round(this.transformTicksToDate(phase.durationTicks).getSeconds());
-          duration.addSeconds(roundedSeconds);
+          let seconds = moment(phase.durationTicks / 10000).seconds();
+          let minutes = moment(phase.durationTicks / 10000).minutes();
+          duration.add(seconds, 'seconds');
+          duration.add(minutes, 'minutes');
         }
       });
     }
-    return duration;
+    return duration.hours() + ':' + duration.minutes() + ':' + duration.seconds();
   }
 
   transformTicksToDate(ticks: number): Date {

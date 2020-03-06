@@ -59,6 +59,22 @@ export class StatusBarComponent implements OnInit {
         break;
     }
   }
+
+  navigationToggled(navigationEvent) {
+    console.log('navigation toggled ' + navigationEvent);
+    switch (navigationEvent.value) {
+      case 'editPatient':
+        this.dataService.changeMessage('editPatient');
+        break;
+        case 'selectProtocol':
+          this.dataService.changeMessage('selectProtocol');
+          break;
+
+      default:
+        break;
+    }
+  }
+
   exit() {
     window.close();
   }

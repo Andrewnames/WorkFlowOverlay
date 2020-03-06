@@ -46,6 +46,8 @@ export class ModalityScreenComponent implements OnInit {
     };
     this.router.navigate(['select-protocol-screen'], navigationExtras);
     this.dataService.changeMessage('select screen');// TODO send message to status bar
+    this.dataService.changeMessage('selectProtocol');// TODO send message to status bar
+
     console.log('navigate to protocol selection');
     console.log(navigationExtras);
   }

@@ -2,7 +2,10 @@
 
 ">
   <!-- panel info header -->
-  <mat-expansion-panel class="mat-elevation-z6" style="position: relative;
+  <mat-expansion-panel class="mat-elevation-z6"
+  style="
+  width: 1365px;
+  position: relative;
   z-index: 2;">
     <mat-expansion-panel-header [collapsedHeight]="'70px'" style=" width: 1322px; height: auto; ">
       <mat-panel-title style="height: 65px;
@@ -159,9 +162,12 @@ font-size: 15px;
     </div>
   </mat-expansion-panel>
   <!-- main grid -->
-  <div style="
+  <div
+  *ngIf="IsProtocolSelectionActive"
+  style="
   display: grid;
   height: 630px;
+  width: 1366px;
   grid-template-columns: 925px 441px;
   ">
     <!-- select protocol label -->
@@ -204,8 +210,7 @@ font-size: 15px;
         border-right-width: 1px;
         border-color:#7797ae;
         "></mat-divider>
-          <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar"
-           style="max-height: 500px;">
+          <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" style="max-height: 500px;">
 
 
             <div *ngFor="let priorProtocol of PatientPriorsList" style="
@@ -322,7 +327,10 @@ font-size: 15px;
       z-index: 1;
       ">
       <!-- info icon -->
-      <div style="width: 53px;
+      <div
+      class="mat-elevation-z18"
+      style="width: 53px;
+
       justify-self: end;
       margin-top: 15px;
                   grid-row:1;
@@ -330,7 +338,9 @@ font-size: 15px;
                   border-radius: 22px 0 0 22px;
                   box-shadow: 0 0 9px 2px rgba(104, 147, 178, 0.25);
                   background-color: #465b6b;">
-        <mat-icon svgIcon="exclamationWhite-icon" style="
+        <mat-icon
+
+        svgIcon="exclamationWhite-icon" style="
                   margin-top: 10px;
     margin-left: 10px;"></mat-icon>
       </div>
@@ -519,27 +529,19 @@ background-color: #b9c7d233;">
         <!-- actual steps preview -->
 
         <ng-scrollbar *ngIf="SelectedProtocol; else emptySelection" #scrollable track="all"
-          pointerEventsMethod="scrollbar"
-
-          style="
+          pointerEventsMethod="scrollbar" style="
             max-width: 520px;
             max-height: 230px;">
           <!-- step -->
-          <div *ngFor="let step of (SelectedProtocol.standardProtocols|| [])"
-           style="width: 440px;
+          <div *ngFor="let step of (SelectedProtocol.standardProtocols|| [])" style="width: 440px;
 
-            "
-data-aos="fade-left" data-aos-duration="500" data-aos-easing="ease-in-out"
-            >
+            " data-aos="fade-left" data-aos-duration="500" data-aos-easing="ease-in-out">
             <!-- phases-->
             <div *ngFor="let phase of step.phases" style="display: grid;
             margin-top: 10px;
             width: 440px;
             grid-template-columns: 1fr  1fr  1fr  1fr;
-            "
-
-
-            >
+            ">
               <mat-icon *ngIf="phase.contrastRatio==0" svgIcon="saline-icon" style="
             justify-self: center;
             grid-column: 1;
@@ -582,7 +584,6 @@ data-aos="fade-left" data-aos-duration="500" data-aos-easing="ease-in-out"
                  color:#41505b;
                 "> pause_circle_outline</mat-icon>
               <span
-
                 style="grid-column: 2;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.volume}}</span>
               <span
                 style="grid-column: 3;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.flowRate}}</span>

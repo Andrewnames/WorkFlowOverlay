@@ -51,6 +51,7 @@
 .grid-parent {
   display: grid;
   text-align: center;
+  width: 1366px;
   height: 700px;
   grid-template-columns: 1fr 1fr
 }

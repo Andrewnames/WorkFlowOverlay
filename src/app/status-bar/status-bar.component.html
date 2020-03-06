@@ -24,14 +24,16 @@ letter-spacing: 1.5px;">Patient worklist</label>
 
   <!-- navigation buttons -->
   <mat-button-toggle-group
-
+  (change)="navigationToggled($event)"
   *ngIf="IsSelectScreen" #group="matButtonToggleGroup" style="background-color: #7797ae;
   z-index: 2;
   width: 925px;
 position: absolute;
 height: 65px;
   ">
-    <mat-button-toggle value="selectProtocol" [checked]="SelectInjectionButtonActive">
+    <mat-button-toggle value="selectProtocol"
+
+    [checked]="SelectInjectionButtonActive">
       1. Select Injection Protocol
     </mat-button-toggle>
     <mat-button-toggle value="editPatient" [disabled]="!IsReadyToAddPatientData">
