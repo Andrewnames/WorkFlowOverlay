@@ -1,49 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 
-body { margin: 0;
+body {
+  margin: 0;
   overflow-x: hidden;
   overflow-y: hidden;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-     -moz-user-select: none; /* Old versions of Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-          user-select: none; /* Non-prefixed version, currently
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Opera and Firefox */
-
-
 }
 
-
-.mat-select-panel{
+.mat-select-panel {
   max-height: 500px !important;
 }
 
-.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
-  border-color:#7797ae;
-
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #7797ae;
 }
 
+/* radio button label style */
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-label {
-  font-size:45px !important;
-  font-weight: inherit;
+  font-size: 45px;
+  font-weight: bolder;
 }
 
-.mat-radio-button.mat-accent .mat-radio-inner-circle{
-  color:#7797ae;
-font-weight: bold;
-  background-color:#7797ae;
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  color: #7797ae;
+  font-weight: bold;
+  background-color: #7797ae;
 }
 
 .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
-  background-color:rgba(37, 255, 146, 0.26)
+  background-color: rgba(37, 255, 146, 0.26);
 }
-
 
 /* underline for selection  form */
 .mat-form-field.mat-focused .mat-form-field-ripple {
@@ -53,5 +53,3 @@ font-weight: bold;
 .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
   color: #7797ae;
 }
-
-

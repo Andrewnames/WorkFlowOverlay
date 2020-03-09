@@ -9,7 +9,7 @@ import { ArchivedProtocol } from '../Models/ArchivedProtocol';
 import * as faker from 'faker';
 import { AnatomicalRegion } from '../Models/AnatomicalRegion.enum';
 import { Guid } from 'guid-typescript';
-import { MatRadioChange } from '@angular/material/radio';
+import { MatRadioChange, MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeAnimation } from '../animations';
 import { fadeInDown } from 'ng-animate';
@@ -24,9 +24,10 @@ import { ProtocolPlan } from '../Models/ProtocolPlan';
 import { StandardProtocol } from '../Models/StandardProtocol';
 import { PhaseType } from '../Models/PhaseType.enum';
 import { ProtocolPhase } from '../Models/ProtocolPhase';
-import * as AOS from 'aos';
+
 import 'aos/dist/aos.css';
 import * as moment from 'moment';
+
 
 
 
@@ -68,11 +69,13 @@ export class SelectProtocolScreenComponent implements OnInit {
   NumberOfPriors = 0;
   PressureUnit = 'PSI';
 
-
-
+  // expanders open/close state
+  panelOpenState = false;
   // navigation triggers
   IsProtocolSelectionActive = false;
   IsPatientDataEditActive = false;
+
+  PatientInfoHeaderVisible = true;
 
   PressureLimits: number[] = [100,
     150,
@@ -85,7 +88,10 @@ export class SelectProtocolScreenComponent implements OnInit {
   TotalDuration = '— — — ';
 
   SelectedPatient: PatientModalityTableEntry;
-  SelectedProtocol: ProtocolPlan;
+  public SelectedProtocol: ProtocolPlan;
+  public SelectedProtocolForExpander: ProtocolPlan = new ProtocolPlan(); // these are to handle collpasing state for navigation
+  public SelectedProtocolRadioButton: MatRadioButton;
+
   ProtocolTemplatesList: [string, ProtocolPlan[]][]; // tupples  array for protocol drodown
   PatientPriorsList: ArchivedProtocol[];
 
@@ -120,7 +126,7 @@ export class SelectProtocolScreenComponent implements OnInit {
 
   ngOnInit() {
 
-    AOS.init();
+
 
     this.dataService.currentMessage.subscribe(message => this.processMessage(message));
 
@@ -209,13 +215,17 @@ export class SelectProtocolScreenComponent implements OnInit {
 
   planSelected(planselectedChange: MatRadioChange) { // assign selected protocol from prior or new template
 
+    this.SelectedProtocolRadioButton = planselectedChange.source;
 
     if (planselectedChange.source.value instanceof ArchivedProtocol) {
       console.log('selected archived  plan guid ' + planselectedChange.source.value.protocolPlan.uniqueId);
       this.SelectedProtocol = planselectedChange.source.value.protocolPlan;
+      this.SelectedProtocolForExpander = new ProtocolPlan(); // to collaps expander for templates
 
     }
     if (planselectedChange.source.value instanceof ProtocolPlan) {
+      this.SelectedProtocol = planselectedChange.source.value;
+      this.SelectedProtocolForExpander = planselectedChange.source.value;
       console.log('selected protocol  plan guid ' + planselectedChange.source.value.uniqueId);
       this.SelectedProtocol = planselectedChange.source.value;
     }

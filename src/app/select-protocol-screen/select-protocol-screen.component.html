@@ -2,8 +2,7 @@
 
 ">
   <!-- panel info header -->
-  <mat-expansion-panel class="mat-elevation-z6"
-  style="
+  <mat-expansion-panel *ngIf="PatientInfoHeaderVisible" class="mat-elevation-z6" style="
   width: 1365px;
   position: relative;
   z-index: 2;">
@@ -162,34 +161,35 @@ font-size: 15px;
     </div>
   </mat-expansion-panel>
   <!-- main grid -->
-  <div
-  *ngIf="IsProtocolSelectionActive"
-  style="
+  <div style="
   display: grid;
   height: 630px;
   width: 1366px;
   grid-template-columns: 925px 441px;
   ">
-    <!-- select protocol label -->
 
-    <label [@fadeInRight]="fadeInRight" style="width: 547px;
-    grid-column: 1;
-    grid-row: 1;
-      height: 50px;
+
+    <!-- priors and availables main grid-->
+    <mat-radio-group *ngIf="IsProtocolSelectionActive" aria-label="Select an option" (change)="planSelected($event)"
+      [selected]="SelectedProtocolRadioButton" #radioGroup="matRadioGroup" style="
+     margin-top: 38px;
+     grid-column: 1;
+     grid-row: 1;">
+
+      <!-- select protocol label -->
+      <label [@fadeInRight]="fadeInRight" style="width: 547px;
       margin-top: 25px;
       margin-left:35px ;
       font-size: 32px;
       font-weight: bold;
-      font-stretch: normal;
+
       font-style: normal;
       color: #465b6b;">Select Injection Protocol</label>
 
 
-    <!-- priors and availables main grid-->
-    <mat-radio-group aria-label="Select an option" (change)="planSelected($event)" style=" grid-column: 1;
-    grid-row: 1;">
+
       <div style="display: grid;
-      margin-top: 75px;
+
       margin-left: 35px;
       grid-template-columns: 300px 500px;
       ">
@@ -280,10 +280,14 @@ font-size: 15px;
         max-width: 520px;
         max-height: 495px;
         width: 520px;">
-            <div *ngFor="let protocol of ProtocolTemplatesList">
-              <mat-expansion-panel class="mat-elevation-z0" style="width:500px">
-                <mat-expansion-panel-header [collapsedHeight]="'60px'" style=" height: auto; ">
-                  <mat-panel-title style="width: 179px;
+            <mat-accordion>
+              <div *ngFor="let protocol of ProtocolTemplatesList">
+
+                <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true"
+                  (closed)="panelOpenState = false" style="width:500px"
+                  [expanded]=" protocol[0]===SelectedProtocolForExpander.anatomicalRegion">
+                  <mat-expansion-panel-header [collapsedHeight]="'60px'" style=" height: auto; ">
+                    <mat-panel-title style="width: 179px;
               height: 50px;
               font-size: 22px;
               font-weight: 500;
@@ -292,25 +296,26 @@ font-size: 15px;
               line-height: 2.27;
               letter-spacing: 0.28px;
               color: #7797ae;">
-                    {{protocol[0]}}
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-radio-button *ngFor="let plantemplate of protocol[1]" labelPosition="before" [value]="plantemplate"
-                  style="
+                      {{protocol[0]}}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <mat-radio-button *ngFor="let plantemplate of protocol[1]" labelPosition="before"
+                    [value]="plantemplate" style="
                       width: 280px;">
-                  <div class="availableProtocolLabel">
-                    <span>{{plantemplate.name}}</span>
-                  </div>
-                </mat-radio-button>
-              </mat-expansion-panel>
-              <mat-divider style="
+                    <div class="availableProtocolLabel">
+                      <span>{{plantemplate.name}}</span>
+                    </div>
+                  </mat-radio-button>
+                </mat-expansion-panel>
+
+                <mat-divider style="
                 width: 500px;
                 border-right-width: 1px;
                 border-color:#7797ae;
                 margin-top: 5px;
                 "></mat-divider>
-            </div>
-
+              </div>
+            </mat-accordion>
           </ng-scrollbar>
         </div>
       </div>
@@ -318,6 +323,12 @@ font-size: 15px;
 
 
 
+
+
+
+
+
+    <!-- 3 rd -->
     <!-- preview panel -->
     <div style="grid-column: 2;
       background-color:#eceff4;
@@ -327,9 +338,7 @@ font-size: 15px;
       z-index: 1;
       ">
       <!-- info icon -->
-      <div
-      class="mat-elevation-z18"
-      style="width: 53px;
+      <div class="mat-elevation-z18" style="width: 53px;
 
       justify-self: end;
       margin-top: 15px;
@@ -338,9 +347,7 @@ font-size: 15px;
                   border-radius: 22px 0 0 22px;
                   box-shadow: 0 0 9px 2px rgba(104, 147, 178, 0.25);
                   background-color: #465b6b;">
-        <mat-icon
-
-        svgIcon="exclamationWhite-icon" style="
+        <mat-icon svgIcon="exclamationWhite-icon" style="
                   margin-top: 10px;
     margin-left: 10px;"></mat-icon>
       </div>
@@ -535,11 +542,12 @@ background-color: #b9c7d233;">
           <!-- step -->
           <div *ngFor="let step of (SelectedProtocol.standardProtocols|| [])" style="width: 440px;
 
-            " data-aos="fade-left" data-aos-duration="500" data-aos-easing="ease-in-out">
+            ">
             <!-- phases-->
             <div *ngFor="let phase of step.phases" style="display: grid;
             margin-top: 10px;
             width: 440px;
+
             grid-template-columns: 1fr  1fr  1fr  1fr;
             ">
               <mat-icon *ngIf="phase.contrastRatio==0" svgIcon="saline-icon" style="
