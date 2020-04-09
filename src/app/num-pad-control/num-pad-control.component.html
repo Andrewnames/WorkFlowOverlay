@@ -1,0 +1,171 @@
+<div mat-dialog-content style="
+display: grid;
+grid-template-rows: auto auto;
+height: 630px;
+max-height: 580px;
+overflow: hidden;
+text-align: center;">
+
+
+
+
+  <label [@fadeInRight]="fadeInRight" style="
+    grid-row: 1;
+    grid-column: 1;
+    margin-left:15px ;
+    font-size: 32px;
+    font-weight: bold;
+    font-style: normal;
+    justify-self: left;
+    color: #465b6b;">{{data.protocolName}} | Add {{data.fieldName}}</label>
+
+  <div style="
+grid-row: 2;
+justify-self: center;
+margin-left: 250px;
+margin-top: 20px;
+display: grid;
+grid-template-columns: 100px 100px 100px;
+grid-template-rows: 95px 90px 90px 90px 90px 90px;
+width: 550px;
+height: 600px;
+">
+    <form class="example-form" style="grid-row: 1;
+grid-column-start: 1;
+grid-column-end: 3;
+justify-self: center;
+width: 300px;
+margin-left: 30px;
+">
+      <mat-form-field [@fadeInLeft]="fadeInLeft" class="example-full-width" style="
+      height: auto;
+margin-left: 20px;
+width: 300px;">
+        <mat-label>{{data.fieldName}}</mat-label>
+        <span matPrefix>{{data.units}} &nbsp;</span>
+        <input *ngIf="data.mask" type="tel" matInput [(ngModel)]="numPadValue" name="inputField"
+          (change)="checkIfSeparatorUsed()"
+           [imask]="{
+            mask: '00:00'
+           }"
+
+           [unmask]=false
+           [value]="data.value" focused='true' style="
+font-size: 45px;
+font-weight: bold;
+caret-color: transparent;
+     ">
+       <input *ngIf="!data.mask" type="tel" matInput [(ngModel)]="numPadValue" name="inputField"
+       (change)="checkIfSeparatorUsed()"   [value]="data.value" focused='true' style="
+font-size: 45px;
+font-weight: bold;
+caret-color: transparent;
+  ">
+        <button mat-button matSuffix style="width: 40px;
+        height: 40px;" mat-icon-button aria-label="Clear" (click)="clearInput()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 1;
+grid-row: 4;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">1</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 2;
+grid-row: 4;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">2</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 3;
+grid-row: 4;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">3</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 1;
+grid-row: 3;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">4</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 2;
+grid-row: 3;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">5</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 3;
+grid-row: 3;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">6</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 1;
+grid-row: 2;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">7</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 2;
+grid-row: 2;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">8</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 3;
+grid-row: 2;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">9</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" [disabled]="isSeparatorUsed" style="grid-column: 1;
+grid-row: 5;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">{{data.denumerator}}</button>
+    <button mat-raised-button (click)="numButtonClicked($event)" style="grid-column: 2;
+grid-row: 5;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">0</button>
+    <button mat-raised-button (click)="backspaceButtonClicked()" style="grid-column: 3;
+grid-row: 5;
+width: 75px;
+height: 75px;
+font-size:40px ;
+">
+      <mat-icon svgIcon="backspace-arrow" style="height: 45px;
+width: 45px;"></mat-icon>
+    </button>
+    <button mat-flat-button (click)="cancelClicked()" style="grid-column: 1;
+    margin-top: 5px;
+grid-row: 6;
+width: 125px;
+height: 60px;
+font-size:30px ;
+">Cancel</button>
+    <button mat-raised-button (click)="okClicked()" style="grid-column: 2;
+margin-left: 50px;
+margin-top: 5px;
+grid-row: 6;
+width: 125px;
+height: 60px;
+background-color: #F0F3F5;
+font-size:30px ;
+">Ok</button>
+    <!--
+<m4-time-picker
+style="
+grid-column: 2;
+grid-row: 6;
+"
+     minutes="true" seconds="true" show-labels="true">
+    </m4-time-picker> -->
+  </div>
+
+</div>

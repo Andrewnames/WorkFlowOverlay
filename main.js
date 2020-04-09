@@ -1,11 +1,12 @@
 const { app, BrowserWindow } = require('electron')
+const {ipcMain} = require('electron')
 
 let win;
 
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 1366, 
+    width: 1366,
     height: 768,
     x:0,
     y:0,
@@ -17,8 +18,11 @@ function createWindow () {
     skipTaskbar:true,
     alwaysOnTop:true,
     backgroundColor: '#ffffff',
-    icon: `file://${__dirname}/dist/assets/logo.png`
-   
+    icon: `file://${__dirname}/dist/assets/logo.png`,
+    webPreferences: {
+  nodeIntegration: true,
+}
+
   })
 
 
@@ -33,6 +37,12 @@ function createWindow () {
   })
 }
 
+ipcMain.on('wrap-window', (event, arg) => {
+  win.width=370;
+  console.log('win was wrapped'); // windows size change is not working yet
+})
+
+app.allowRendererProcessReuse = true;
 // Create window on electron intialization
 app.on('ready', createWindow)
 

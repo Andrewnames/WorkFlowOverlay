@@ -1,10 +1,8 @@
-<div
-class="mat-elevation-z15"
-style="display: grid;
+<div class="mat-elevation-z15" style="display: grid;
     position: absolute;
     z-index: 2;
 grid-template-columns: 925px 1fr;
-grid-template-rows: auto auto;
+grid-template-rows: 68px auto;
 width: 1366px;
 height: 68px;
 text-align: right;
@@ -14,32 +12,31 @@ background-color: #7797ae;">
   <label *ngIf="IsPwlLabelVisible" style="
 grid-column: 1;
 grid-row: 1;
-font-size: 22px;
+font-size: 25px;
 font-weight: bold;
 line-height: 3em;
 text-align: left;
     margin-left: 40px;
 color: rgb(255, 255, 255);
+z-index: 2;
 letter-spacing: 1.5px;">Patient worklist</label>
 
   <!-- navigation buttons -->
-  <mat-button-toggle-group
-  (change)="navigationToggled($event)"
-  *ngIf="IsSelectScreen" #group="matButtonToggleGroup" style="background-color: #7797ae;
+  <mat-button-toggle-group (change)="navigationToggled($event)" *ngIf="IsSelectScreen" #group="matButtonToggleGroup"
+    style="background-color: #7797ae;
   z-index: 2;
   width: 925px;
 position: absolute;
 height: 65px;
   ">
-    <mat-button-toggle value="selectProtocol"
-
-    [checked]="SelectInjectionButtonActive">
+    <mat-button-toggle value="selectProtocol" [checked]="SelectInjectionButtonActive">
       1. Select Injection Protocol
     </mat-button-toggle>
     <mat-button-toggle value="editPatient" [disabled]="!IsReadyToAddPatientData">
       2. Add Patient data
     </mat-button-toggle>
-    <mat-button-toggle value="injectionReview" [disabled]="!IsReadyForReview"> 3. Review Injection
+    <mat-button-toggle value="injectionReview" [disabled]="!IsReadyForReview">
+      3. Review Injection
     </mat-button-toggle>
     <mat-button-toggle value="proceedAndLock" class="lockButton" [disabled]="!IsReadyToLock">
       Lock

@@ -5,7 +5,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { DataServiceService } from '../DataService.service';
+import { DataServiceService } from '../Services/DataService.service';
 import * as faker from 'faker';
 
 const initialSelection = [];
@@ -27,7 +27,7 @@ const PATIENT_DATA: PatientModalityTableEntry[] = [/*
 @Component({
   selector: 'app-modality-screen',
   templateUrl: './modality-screen.component.html',
-  styleUrls: ['./modality-screen.component.css']
+  styleUrls: ['./modality-screen.component.less']
 })
 
 
@@ -35,6 +35,7 @@ export class ModalityScreenComponent implements OnInit {
   displayedColumns: string[] = ['alert', 'patient-name', 'birth-date', 'id', 'studyDT', 'accessionNumber', 'studyDescr'];
   dataSource = new MatTableDataSource(PATIENT_DATA);
   selection = new SelectionModel<PatientModalityTableEntry>(allowMultiSelect, initialSelection);
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -89,7 +90,9 @@ export class ModalityScreenComponent implements OnInit {
           PatientStudyDescription: faker.hacker.phrase(),
           PatientBirthDate: birthday,
           PatientAge: age,
-          PatientGender: gender
+          PatientGender: gender,
+          PatientHeight: faker.random.number(200),
+          PatientWeight: faker.random.number(200)
         }
       );
     }

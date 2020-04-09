@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DataServiceService } from '../../DataService.service';
+import { DataServiceService } from '../../Services/DataService.service';
 
 @Component({
   selector: 'app-startup-screen',
   templateUrl: './startup-screen.component.html',
-  styleUrls: ['./startup-screen.component.css']
+  styleUrls: ['./startup-screen.component.less']
 })
 export class StartupScreenComponent implements OnInit {
 

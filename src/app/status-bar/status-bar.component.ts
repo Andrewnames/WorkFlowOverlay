@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
-import { DataServiceService } from '../DataService.service';
+import { DataServiceService } from '../Services/DataService.service';
+import { Router } from '@angular/router';
+import { IpcRenderer } from 'electron';
+
 @Component({
   selector: 'app-status-bar',
   templateUrl: './status-bar.component.html',
-  styleUrls: ['./status-bar.component.css']
+  styleUrls: ['./status-bar.component.less']
 })
 export class StatusBarComponent implements OnInit {
   SelectInjectionButtonActive = true;
@@ -16,9 +19,12 @@ export class StatusBarComponent implements OnInit {
   IsReadyToAddPatientData = false; // navigation button disabling properties
   IsReadyForReview = false;
   IsReadyToLock = false;
+  private _ipc: IpcRenderer | undefined = void 0;
 
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dataService: DataServiceService) {
+  constructor(iconRegistry: MatIconRegistry,
+    private router: Router,
+    sanitizer: DomSanitizer, private dataService: DataServiceService) {
     iconRegistry.addSvgIcon(
       'cog-wheel',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cogWheel.svg'));
@@ -30,7 +36,18 @@ export class StatusBarComponent implements OnInit {
     iconRegistry.addSvgIcon(
       'question',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/question.svg'));
+
+    if (window.require) {
+      try {
+        this._ipc = window.require('electron').ipcRenderer;
+      } catch (e) {
+        throw e;
+      }
+    } else {
+      console.warn('Electron\'s IPC was not loaded');
+    }
   }
+
 
   ngOnInit() {
     this.dataService.currentMessage.subscribe(message => this.processMessage(message));
@@ -55,6 +72,15 @@ export class StatusBarComponent implements OnInit {
         console.log('protocol was selected. ready to edit patient');
         this.IsReadyToAddPatientData = true;
         break;
+
+      case 'activateProtocolReview':
+        console.log('protocol was selected. ready to edit patient');
+        this.IsReadyForReview = true;
+        break;
+      case 'activateLock':
+        console.log('protocol under review. ready to lock');
+        this.IsReadyToLock = true;
+        break;
       default:
         break;
     }
@@ -65,10 +91,25 @@ export class StatusBarComponent implements OnInit {
     switch (navigationEvent.value) {
       case 'editPatient':
         this.dataService.changeMessage('editPatient');
+        this.router.navigate(['select-protocol-screen']);
+
         break;
-        case 'selectProtocol':
-          this.dataService.changeMessage('selectProtocol');
-          break;
+      case 'selectProtocol':
+        this.dataService.changeMessage('selectProtocol');
+        this.router.navigate(['select-protocol-screen']);
+        break;
+      case 'injectionReview':
+        this.dataService.changeMessage('injectionReview');
+
+        break;
+      case 'proceedAndLock':
+
+        if (this._ipc) {
+          this._ipc.send('wrap-window');
+        }
+
+
+        break;
 
       default:
         break;

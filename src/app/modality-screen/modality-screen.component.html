@@ -14,7 +14,6 @@ height: 700px;
     <mat-icon matSuffix>search</mat-icon>
     <mat-label style="width: 330px;
 
-    font-family: HelveticaNeue;
     font-size: 20px;
     color: #41505b;">Search by name, accession number...</mat-label>
     <input class="" matInput (keyup)="applyFilter($event)" style="
@@ -56,7 +55,7 @@ overflow: overlay;
           <!-- no alerts -->
           <div *ngIf="!patient.IsHavingAlerts" style="
           text-align: center;
-          height: 64px;
+          height: 65px;
           margin-left: 15px;
           margin-bottom: 10px;
           border-radius: 4px 0 0 4px;
@@ -71,13 +70,13 @@ overflow: overlay;
 width: 132px;
   height: 18px;
 text-align: center;
-font-family: HelveticaNeue;
 font-size: 13px;
 font-weight: bold;
 font-stretch: normal;
 font-style: normal;
 line-height: 1.38;
 letter-spacing: 0.18px;
+
 color: #41505b;
 "> PATIENT NAME </th>
         <td mat-cell *matCellDef="let patient" style="
@@ -92,7 +91,6 @@ color: #41505b;
       <!-- DOB Column -->
       <mat-text-column name="birth-date1" matColumnDef="birth-date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="
-      font-family: HelveticaNeue;
       width: 120px;
       text-align: center;
       font-size: 13px;
@@ -116,7 +114,6 @@ color: #41505b;
       width: 120px;
   height: 18px;
   text-align: center;
-      font-family: HelveticaNeue;
       font-size: 13px;
       font-weight: bold;
       font-stretch: normal;
@@ -135,7 +132,6 @@ color: #41505b;
       <!-- study DT Column -->
       <mat-text-column name="studyDT1" matColumnDef="studyDT">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="
-      font-family: HelveticaNeue;
       width: 120px;
       text-align: center;
       font-size: 13px;
@@ -156,7 +152,6 @@ color: #41505b;
       <!-- accession Column -->
       <mat-text-column name="accessionNumber1" matColumnDef="accessionNumber">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="
-      font-family: HelveticaNeue;
       text-align: center;
       font-size: 13px;
       font-weight: bold;
@@ -176,7 +171,6 @@ color: #41505b;
       <!-- study description Column -->
       <mat-text-column name="studyDescr1" matColumnDef="studyDescr">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="
-      font-family: HelveticaNeue;
       text-align: center;
       font-size: 13px;
       font-weight: bold;

@@ -1,0 +1,800 @@
+<div style="height: 700px;
+display: grid;
+grid-template-columns: 340px 585px 441px;
+">
+
+  <!-- patient info -->
+  <div style="grid-row: 1;
+  margin-left: 40px;
+display: grid;
+grid-template-columns: 170px 170px;
+grid-template-rows: 90px 30px 30px 60px 30px 30px 30px 30px 30px 30px 30px 30px ;
+column-gap: 20px;
+height: 700px;
+">
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 1;
+grid-column-end:  3;
+grid-row: 1;
+margin-top: 70px;
+margin-left:35px ;
+font-size: 25px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.88;
+  letter-spacing: 0px;
+  color: #41505b;">{{ProcedureInfo.patientInfo.PatientName}}</label>
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 1;
+grid-column-end: 3;
+grid-row: 2;
+margin-top: 25px;
+margin-left:35px ;
+font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;"> # {{ProcedureInfo.patientInfo.PatientID}}</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 1;
+grid-column-end: 3;
+grid-row: 3;
+margin-top: 25px;
+margin-left:35px ;
+font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;"> Accession # {{ProcedureInfo.patientInfo.PatientAccessionNumber}}</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 1;
+grid-column-end: 3;
+grid-row: 4;
+margin-top: 25px;
+margin-left:35px ;
+font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;">{{ProcedureInfo.protocolPlan.name}}</label>
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 1;
+grid-row: 5;
+margin-top: 25px;
+margin-left:35px ;
+font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;">Patient Height</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 2;
+grid-column-end: 3;
+grid-row: 5;
+margin-top: 25px;
+font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;">{{ProcedureInfo.patientInfo.PatientHeight}} in</label>
+
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+    grid-column-start:1;
+    grid-row: 6;
+    margin-top: 25px;
+    margin-left:35px ;
+    font-size: 15px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.73;
+      letter-spacing: -0.01px;
+      color: #41505b;">Patient Weight</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+ grid-column-start:2;
+ grid-column-end: 3;
+ grid-row: 6;
+ margin-top: 25px;
+ font-size: 15px;
+   font-weight: bold;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: 1.73;
+   letter-spacing: -0.01px;
+   color: #41505b;">{{ProcedureInfo.patientInfo.PatientWeight}} lb</label>
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 1;
+grid-row: 7;
+margin-top: 25px;
+margin-left:35px ;
+font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;"> Injection Site</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 2;
+grid-column-end: 3;
+grid-row: 7;
+margin-top: 25px;
+font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;">{{ProcedureInfo.catheterPlacement}}</label>
+
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+    grid-column-start: 1;
+    grid-row: 8;
+    margin-top: 25px;
+    margin-left:35px ;
+    font-size: 15px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.73;
+      letter-spacing: -0.01px;
+      color: #41505b;"> Catheter Size</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row: 8;
+    margin-top: 25px;
+    font-size: 15px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.73;
+      letter-spacing: -0.01px;
+      color: #41505b;">{{ProcedureInfo.catheterType}}</label>
+
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 1;
+grid-row: 9;
+margin-top: 25px;
+margin-left:35px ;
+font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;">Contrast</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 2;
+grid-column-end: 3;
+grid-row: 9;
+margin-top: 25px;
+font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;">{{ProcedureInfo.contrast}}</label>
+
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+grid-column-start: 1;
+grid-row:10;
+margin-top: 25px;
+margin-left:35px ;
+font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.73;
+  letter-spacing: -0.01px;
+  color: #41505b;">eGfr</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+     grid-column-start: 2;
+     grid-column-end: 3;
+     grid-row:10;
+     margin-top: 25px;
+     font-size: 15px;
+       font-weight: bold;
+       font-stretch: normal;
+       font-style: normal;
+       line-height: 1.73;
+       letter-spacing: -0.01px;
+       color: #41505b;">{{ProcedureInfo.eGfr}}</label>
+
+    <label [@fadeInLeft]="fadeInLeft" style="
+    grid-column-start: 1;
+    grid-row: 11;
+    margin-top: 25px;
+    margin-left:35px ;
+    font-size: 15px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.73;
+      letter-spacing: -0.01px;
+      color: #41505b;">kVp</label>
+    <label [@fadeInLeft]="fadeInLeft" style="
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row: 11;
+    margin-top: 25px;
+    font-size: 15px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.73;
+      letter-spacing: -0.01px;
+      color: #41505b;">{{ProcedureInfo.kVp}}</label>
+
+
+  </div>
+
+  <!-- protocol details -->
+  <div style="display: grid;
+grid-template-rows: 70px 60px  75px auto auto;
+">
+    <!-- plan details header -->
+    <label [@fadeInDown]="fadeInDown" style="
+grid-row: 1;
+margin-top: 70px;
+margin-left:35px ;
+font-size: 25px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.88;
+  letter-spacing: 0px;
+  color: #41505b;">Protocol Details</label>
+    <label [@fadeInRight]="fadeInRight" style="
+  grid-row: 2;
+  margin-top: 25px;
+  margin-left:35px ;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  color: #465b6b;">{{ProcedureInfo.protocolPlan.name}}</label>
+
+
+    <!-- actual phases preview -->
+    <!-- header for volume/flowrate/etc -->
+    <div style="grid-row: 3;
+  margin-top: 20px;
+  width: 560px;
+  grid-template-rows: 20px auto;
+display: grid; grid-template-columns: 1fr  1fr  1fr  1fr;
+">
+      <span style="grid-column: 1; grid-row: 1; justify-self: center; color: #41505b; font-weight: bold;">Phase</span>
+      <span style="grid-column: 1; grid-row: 2; color: #41505b;  "> </span>
+      <span style="grid-column: 2; grid-row: 1;justify-self: center;  color: #41505b; font-weight: bold;">Flow
+        Rate</span>
+      <span style="grid-column: 2; grid-row: 2; justify-self: center;  color: #41505b;  ">(ml/sec)</span>
+      <span style="grid-column: 3; grid-row: 1; justify-self: center;  color: #41505b; font-weight: bold;">Volume</span>
+      <span style="grid-column: 3; grid-row: 2; justify-self: center;  color: #41505b; ">(ml)</span>
+      <span
+        style="grid-column: 4; grid-row: 1; justify-self: center;  color: #41505b; font-weight: bold;">Duration</span>
+      <span style="grid-column: 4; grid-row: 2; justify-self: center;  color: #41505b;  ">(mm:ss)</span>
+
+    </div>
+
+    <!-- phases -->
+    <div style="width: 560px;
+ grid-row: 4;">
+      <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" style="
+          margin-left: 10px;
+          width: 580px;
+     max-height: 365px;">
+        <!-- phases-->
+        <div class="mat-elevation-z2" *ngFor="let phase of ProcedurePhases" style="display: grid;
+     margin-top: 10px;
+     width: 545px;
+     height: 80px;
+     border-radius: 6px;
+     background-color: #b9c7d233;
+     grid-template-columns: 1fr  1fr  1fr  1fr;
+     ">
+          <mat-icon *ngIf="phase.contrastRatio==0" svgIcon="saline-icon" style="
+     justify-self: center;
+     margin-top: 26px;
+     grid-column: 1;
+    "></mat-icon>
+          <mat-icon *ngIf="phase.contrastRatio==100" svgIcon="contrast-icon" style="
+    justify-self: center;
+    margin-top: 26px;
+    grid-column: 1;
+   "></mat-icon>
+
+          <button mat-fab *ngIf="phase.type==6" style="width: 45px;
+
+   height: 45px;
+   justify-self: center;
+   background-color: transparent;
+object-fit: contain;
+   margin-top: 17px;">
+            <mat-icon style="
+   justify-self: center;
+   grid-column: 1;
+   margin-top: -3px;
+   height: 30px;
+   width: 30px;
+   margin-left: 10px;
+   transform: scale(1.6);
+  ">
+              <svg style="    height: 30px;
+           width: 30px;">
+                <defs>
+                  <linearGradient id="grad1">
+                    <stop offset="0%" style="stop-color:rgb(119,203,243);stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:rgb(119,203,243);stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:rgb(164,209,118);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgb(164,209,118);stop-opacity:1" />
+
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M12 3.25S6 10 6 14c0 3.32 2.69 6 6 6a6 6 0 0 0 6-6c0-4-6-10.75-6-10.75m2.47 6.72l1.06 1.06l-6 6l-1.06-1.06M9.75 10A1.25 1.25 0 0 1 11 11.25a1.25 1.25 0 0 1-1.25 1.25a1.25 1.25 0 0 1-1.25-1.25A1.25 1.25 0 0 1 9.75 10m4.5 4.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 14.25 17A1.25 1.25 0 0 1 13 15.75a1.25 1.25 0 0 1 1.25-1.25z"
+                  fill="url(#grad1)" />
+              </svg></mat-icon>
+          </button>
+          <mat-icon *ngIf="phase.type==2" style="
+           justify-self: center;
+           grid-column: 1;
+           margin-top: 25px;
+           color:#41505b;
+          ">access_time</mat-icon>
+          <mat-icon *ngIf="phase.type==3" style="
+          justify-self: center;
+          margin-top: 25px;
+          grid-column: 1;
+          color:#41505b;
+         "> pause_circle_outline</mat-icon>
+
+          <!-- flowrate -->
+          <button mat-raised-button *ngIf="phase.type!=2 && phase.type!=3"
+            (click)="editPhaseValues(phase,'FlowRate',$event)" style="width: 100px;
+          justify-self: center;
+            height: 45px;
+    margin-top: 17px;">
+            <!-- badge -->
+            <div style="display: grid;
+    grid-template-columns: 0px auto;
+    ">
+              <div class="mat-elevation-z6" *ngIf="phase.flowRateDelta!=0" style="
+
+    display: table;
+    width: 100%;
+        height: 25px;
+        margin-top: -15px;
+        margin-left: -40px;
+                  grid-column: 1;
+
+">
+                <div style="
+display:table-row;
+  height:0px;
+">
+                  <div style=" display:table-cell;
+width:100%;
+text-align: center;
+border-radius: 10px 10px 10px 10px;
+border-width: thin;
+border-style: solid;
+border-color: #7797ae;
+background-color: white;
+opacity: 0.9;
+font-size: 15px;
+line-height: 1.25em;
+padding: 3px;
+"> {{phase.flowRateDelta>0? '▲': '▼'}} {{phase.flowRateDelta | absoluteValue}} </div>
+                </div>
+
+
+
+              </div>
+              <span style="grid-column: 2;
+               justify-self: center;
+                font-size: 18px;
+                 color: #41505b;
+                 font-weight: bold;">{{phase.flowRate}}</span>
+            </div>
+          </button>
+          <!-- volume button -->
+          <button mat-raised-button *ngIf="phase.type!=2 && phase.type!=3"
+            (click)="editPhaseValues(phase,'Volume',$event)" style="
+            grid-column: 3;  justify-self: center;
+            width: 100px;
+          justify-self: center;
+                    height: 45px;
+                    margin-top: 17px;">
+            <!-- badge -->
+            <div style="display: grid;
+            grid-template-columns: 0px auto;
+            ">
+
+              <div class="mat-elevation-z6" *ngIf="phase.volumeDelta!=0" style="
+                            display: table;
+                            width: 100%;
+                                height: 25px;
+                                margin-top: -15px;
+                                margin-left: -40px;
+                                          grid-column: 1;
+
+          ">
+                <div style="
+                      display:table-row;
+                          height:0px;
+          ">
+                  <div style=" display:table-cell;
+                  width:100%;
+                  text-align: center;
+             border-radius: 10px 10px 10px 10px;
+             border-width: thin;
+           border-style: solid;
+          border-color: #7797ae;
+          background-color: white;
+          opacity: 0.9;
+          font-size: 15px;
+          line-height: 1.25em;
+          padding: 3px;
+                  "> {{phase.volumeDelta>0? '▲': '▼'}} {{phase.volumeDelta | absoluteValue}} </div>
+                </div>
+
+              </div>
+              <span style="
+                grid-column: 2;
+                font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.volume}}</span>
+            </div>
+          </button>
+          <!-- duration button -->
+          <button mat-raised-button *ngIf="phase.type==2 || phase.type==3"
+            (click)="editPhaseValues(phase,'Duration',$event)" style="width: 100px;
+          grid-column: 4;
+          justify-self: center;
+            height: 45px;
+            margin-top: 17px;">
+            <!-- badge -->
+            <div
+
+            style="display: grid;
+           grid-template-columns: 0px auto;
+           ">
+              <div class="mat-elevation-z6"
+              *ngIf="phase.durationDelta!=0"
+              style="
+                           display: table;
+                           width: 100%;
+                               height: 25px;
+                               margin-top: -15px;
+                               margin-left: -40px;
+                                         grid-column: 1;
+
+         ">
+                <div style="
+                     display:table-row;
+                         height:0px;
+         ">
+
+                  <div *ngIf="phase.type==2" style=" display:table-cell;
+                 width:100%;
+                 text-align: center;
+            border-radius: 10px 10px 10px 10px;
+            border-width: thin;
+          border-style: solid;
+         border-color: #7797ae;
+         background-color: white;
+         opacity: 0.9;
+         font-size: 15px;
+         line-height: 1.25em;
+         padding: 3px;
+         white-space: nowrap;
+                 "> {{phase.durationDelta>=1000000? '▲': '▼'}}
+                    {{phase.durationDelta | absoluteValue |  ticksToDatePipe: 1 | date:'mm:ss' }}
+                  </div>
+
+                  <div *ngIf="phase.type==3" style=" display:table-cell;
+                 width:100%;
+                 text-align: center;
+            border-radius: 10px 10px 10px 10px;
+            border-width: thin;
+          border-style: solid;
+         border-color: #7797ae;
+         background-color: white;
+         opacity: 0.9;
+         font-size: 15px;
+         line-height: 1.25em;
+         padding: 3px;
+         white-space: nowrap;
+                 "> {{phase.durationDelta>=1000000? '▲': '▼'}}
+                    {{phase.durationDelta | absoluteValue |  ticksToDatePipe: 2 | date:'mm:ss' }}
+                  </div>
+                </div>
+
+              </div>
+
+              <span *ngIf="phase.type==2" style="
+              grid-column: 2;
+            justify-self: center; font-size: 18px;
+            color: #7797ae; font-weight: normal;">
+                {{phase.durationTicks | ticksToDatePipe: 1 | date:'mm:ss' }}</span>
+              <span *ngIf="phase.type==3" style="
+              grid-column: 2;
+
+              justify-self: center; font-size: 18px;
+              color: #7797ae; font-weight: normal;">
+                {{phase.pauseSeconds | ticksToDatePipe: 2 | date:'mm:ss' }}</span>
+            </div>
+          </button>
+
+<!-- duration NOT button -->
+          <div *ngIf="phase.type!=2 && phase.type!=3" style="display: grid;
+           grid-column: 4;
+           grid-template-columns: 0px auto;
+           ">
+            <!-- badge -->
+            <div
+            *ngIf="phase.durationDelta!=0"
+            class="mat-elevation-z6"  style="
+                           display: table;
+                           width: 100%;
+                               height: 25px;
+                               margin-left: -20px;
+                                margin-top: 5px;
+                                         grid-column: 1;
+
+         ">
+              <div style="
+                     display:table-row;
+                         height:0px;
+         ">
+                <div *ngIf="phase.type==3" style=" display:table-cell;
+                 width:100%;
+                 text-align: center;
+            border-radius: 10px 10px 10px 10px;
+            border-width: thin;
+          border-style: solid;
+         border-color: #7797ae;
+         background-color: white;
+         opacity: 0.9;
+         font-size: 15px;
+         line-height: 1.25em;
+         padding: 3px;
+         white-space: nowrap;
+                 "> {{phase.durationDelta>=1000000? '▲': '▼'}}
+                  {{phase.durationDelta | absoluteValue | ticksToDatePipe: 2 | date:'mm:ss' }}
+                </div>
+                <div *ngIf="phase.type!=2 && phase.type!=3" style=" display:table-cell;
+  width:100%;
+  text-align: center;
+border-radius: 10px 10px 10px 10px;
+border-width: thin;
+border-style: solid;
+border-color: #7797ae;
+background-color: white;
+opacity: 0.9;
+font-size: 15px;
+line-height: 1.25em;
+padding: 3px;
+white-space: nowrap;
+  "> {{phase.durationDelta>=10000000? '▲': '▼'}} {{phase.durationDelta | absoluteValue | ticksToDatePipe: 1 | date:'mm:ss' }}
+                </div>
+
+
+              </div>
+            </div>
+
+            <span *ngIf="phase.type==3" style="
+              grid-column: 2;
+              margin-top: 25px;
+            justify-self: center; font-size: 18px;
+            color: #7797ae; font-weight: normal;">
+              {{phase.durationTicks | ticksToDatePipe: 2 | date:'mm:ss' }}</span>
+            <span *ngIf="phase.type!=2 && phase.type!=3" style="
+                 grid-column: 2;
+                 margin-top: 25px;
+                justify-self: center; font-size: 18px;
+                color: #7797ae; font-weight: normal;">
+              {{phase.durationTicks | ticksToDatePipe: 1 | date:'mm:ss' }}</span>
+          </div>
+
+        </div>
+      </ng-scrollbar>
+    </div>
+
+    <!-- totals info -->
+    <div style="grid-row: 5;
+    margin-left: 35px;
+    margin-top: 20px;
+display: grid;
+grid-template-columns: 130px 45px 40px  130px 45px 40px auto ;
+grid-template-rows: 50px auto;
+    ">
+      <!-- total contrast -->
+      <label [@fadeInDown]="fadeInDown" style="
+grid-row: 1;
+grid-column: 1;
+width: 70px;
+font-size: 18px;
+  font-weight: bold;
+  opacity: 0.9;
+  color: #41505b;">Total Contrast</label>
+      <label [@fadeInLeft]="fadeInLeft" style="
+  grid-row: 2;
+  grid-column: 1;
+  width: 70px;
+  font-size: 22px;
+    font-weight: normal;
+    opacity: 0.9;
+    color: #41505b;">{{TotalContrast}}</label>
+      <mat-icon svgIcon="contrast-icon" [@fadeInLeft]="fadeInLeft" style="
+  grid-row: 2;
+grid-column: 1;
+margin-left: 45px;
+  justify-self: center;
+ "></mat-icon>
+
+      <div style="margin-top: 35px;
+grid-column: 2;
+grid-row-start: 1;
+grid-row-start: span 2;
+transform: scale(1.4);
+">
+        <div style="width: 40px;
+height: 27px;
+mix-blend-mode: multiply;
+  background-color: #f1f4f6;
+border-radius: 8px 8px 0px 0px;
+
+">
+
+        </div>
+        <svg style="margin-top: -28px;
+  width: 85px;
+  margin-left: -44px;">
+          <path fill="#A2D171"
+            d="M43.895343,28.027176 L43.941846,45.028216 C50.773385,48.034275 62.2627,53.999176 64.436462,54.046393 67.146654,54.09361 77.1969,48.034275 83.577119,45.028216 L83.592462,28.042802" />
+
+        </svg>
+
+      </div>
+
+      <mat-divider [vertical]="true" [@fadeInDown]="fadeInDown" style="
+      grid-column: 3;
+      grid-row-start: 1;
+      grid-row-end: span 2 ;
+      height: 80px;
+      border-right-width: 1px;
+      border-color:#41505b;
+      margin: 10px;
+      "></mat-divider>
+
+      <!-- total saline -->
+      <label [@fadeInDown]="fadeInDown" style="
+ grid-row: 1;
+ grid-column: 4;
+ width: 70px;
+ font-size: 18px;
+   font-weight: bold;
+   opacity: 0.9;
+   color: #41505b;">Total Saline</label>
+      <label [@fadeInUp]="fadeInUp" style="
+   grid-row: 2;
+   grid-column: 4;
+   width: 70px;
+   font-size: 22px;
+     font-weight: normal;
+     opacity: 0.9;
+     color: #41505b;">{{TotalSaline}}</label>
+      <mat-icon svgIcon="saline-icon" [@fadeInUp]="fadeInUp" style="
+   grid-row: 2;
+ grid-column: 4;
+ justify-self: center;
+    margin-left: 45px;
+  "></mat-icon>
+
+      <div style="margin-top: 35px;
+ grid-column: 5;
+ grid-row-start: 1;
+ grid-row-start: span 2;
+ transform: scale(1.4);
+ ">
+        <div style="width: 40px;
+ height: 27px;
+ mix-blend-mode: multiply;
+   background-color: #f1f4f6;
+ border-radius: 8px 8px 0px 0px;
+
+ "></div>
+        <svg style="margin-top: -28px;
+   width: 85px;
+   margin-left: -44px;">
+          <path fill="#77cbf3"
+            d="M43.895343,28.027176 L43.941846,45.028216 C50.773385,48.034275 62.2627,53.999176 64.436462,54.046393 67.146654,54.09361 77.1969,48.034275 83.577119,45.028216 L83.592462,28.042802" />
+
+        </svg>
+
+      </div>
+
+      <mat-divider [vertical]="true" [@fadeInDown]="fadeInDown" style="
+       grid-column: 6;
+       grid-row-start: 1;
+       grid-row-end: span 2 ;
+       height: 80px;
+       border-right-width: 1px;
+       border-color:#41505b;
+       margin: 10px;
+       "></mat-divider>
+
+      <!-- total duration -->
+      <label [@fadeInDown]="fadeInDown" style="
+grid-row: 1;
+grid-column: 7;
+width: 70px;
+font-size: 18px;
+  font-weight: bold;
+  opacity: 0.9;
+  color: #41505b;">Total Duration</label>
+      <label [@fadeInRight]="fadeInRight" style="
+  grid-row: 2;
+  grid-column: 7;
+  width: 70px;
+  font-size: 22px;
+    font-weight: normal;
+    opacity: 0.9;
+    color: #41505b;">{{TotalDuration}}</label>
+      <mat-icon [@fadeInRight]="fadeInRight" style="
+  grid-row: 2;
+grid-column: 7;
+justify-self: center;
+   margin-left: 45px;
+ ">access_time</mat-icon>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+  <!-- adjustments side -->
+  <div style="grid-column: 3;
+ width: 441px;
+  height: 768px;
+  background-color: #e4eaef;
+">
+
+    <!-- info icon -->
+    <div class="mat-elevation-z18" style="width: 53px;
+            margin-left: 388px;
+            margin-top: 75px;
+             height: 44px;
+             border-radius: 22px 0 0 22px;
+             box-shadow: 0 0 9px 2px rgba(104, 147, 178, 0.25);
+             background-color: #465b6b;">
+      <mat-icon svgIcon="exclamationWhite-icon" style="
+             margin-top: 10px;
+margin-left: 10px;"></mat-icon>
+    </div>
+  </div>
+
+</div>

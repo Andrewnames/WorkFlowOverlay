@@ -168,6 +168,449 @@ font-size: 15px;
   grid-template-columns: 925px 441px;
   ">
 
+    <!-- patient edit grid -->
+
+    <div *ngIf="IsPatientDataEditActive" style="display: grid;
+ grid-column: 1;
+     grid-row: 1;
+     grid-template-rows: 60px 60px 125px 60px auto auto auto;
+     grid-template-columns: 220px 220px 220px 220px; ;
+">
+
+      <!-- protocol name label -->
+      <label [@fadeInRight]="fadeInRight" style="
+grid-row: 1;
+grid-column: 1;
+margin-top: 25px;
+margin-left:35px ;
+font-size: 32px;
+font-weight: bold;
+font-style: normal;
+color: #465b6b;">{{SelectedProtocol.name}}</label>
+
+      <label [@fadeInLeft]="fadeInLeft" style="
+      grid-column: 1;
+margin-top: 25px;
+margin-left:35px ;
+  height: 18px;
+  opacity: 0.8;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 0.21px;
+  color: #41505b;">P3t requirements</label>
+
+
+      <!-- p3t weight -->
+      <mat-form-field class="mat-elevation-z10"
+      appearance="none"
+      style="border-radius: 4px; grid-column: 1;grid-row: 3;
+      background-color: white;
+      padding: 5px;
+      margin-left: 35px;
+      height: 90px;
+      max-height: 200px;
+      width: 175px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #41505b;
+      " [@fadeInDown]="fadeInDown">
+        <mat-label style="width: 175px;
+        height: 60px;
+        padding-bottom: 8px;
+margin-left:20px ;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 2.46;
+        letter-spacing: 0px;
+        color: #41505b;">p3t weight</mat-label>
+        <mat-select style="
+                max-height: 700px;
+    margin-left: 20px;
+    width: 145px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+        ">
+
+          <mat-option *ngFor="let limitValue of PressureLimits" [value]="limitValue" style="
+font-weight: bold;
+text-align: center;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 12px;
+font-size: 15px;
+width: 180px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.6;
+  letter-spacing: -0.02px;
+  text-align: center;
+  color: #41505b;
+border-radius: 4px;
+background-color: #b9c7d233;">
+            {{limitValue}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      <!-- contrast -->
+
+      <mat-form-field class="mat-elevation-z10"
+      appearance="none"
+      style="border-radius: 4px; grid-column: 2;grid-row: 3;
+      background-color: white;
+      padding: 5px;
+      margin-left: 25px;
+      height: 90px;
+      max-height: 200px;
+      width: 175px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #41505b;
+      " [@fadeInUp]="fadeInUp">
+        <mat-label style="width: 175px;
+        height: 60px;
+        padding-bottom: 8px;
+margin-left:20px ;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 2.46;
+        letter-spacing: 0px;
+        color: #41505b;">Contrast</mat-label>
+        <mat-select style="
+               max-height: 700px;
+    margin-left: 20px;
+    width: 145px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+        " [required]='true'>
+
+          <mat-option *ngFor="let limitValue of PressureLimits" [value]="limitValue" style="
+font-weight: bold;
+text-align: center;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 12px;
+font-size: 15px;
+width: 180px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.6;
+  letter-spacing: -0.02px;
+  text-align: center;
+  color: #41505b;
+border-radius: 4px;
+background-color: #b9c7d233;">
+            {{limitValue}}
+          </mat-option>
+
+        </mat-select>
+        <mat-error *ngIf="contrastControl.hasError('required')">Please select the contrast</mat-error>
+      </mat-form-field>
+
+      <!-- transit bolus yes no option -->
+      <mat-card [@fadeInDown]="fadeInDown" style="
+      text-align: center;
+      margin-left: 10px;
+      grid-column: 3;
+      grid-row: 3;
+      height: 68px;
+      max-height: 180px;
+      width: 153px;
+      " class="mat-elevation-z10">
+
+        <label [@fadeInLeft]="fadeInLeft" style="
+      margin-top: 25px;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: 0px;
+        color: #41505b;" required='true'>Transit bolus <label style=" font-size: 18px;
+    font-weight: bold;
+    color: red;
+    ">*</label></label>
+        <mat-button-toggle-group (change)="isTransitBolusSelected($event)" #group="matButtonToggleGroup" style="
+       background-color: #7797ae;
+       border-radius: 40px;
+        width: 150px;
+      height: 45px;
+    "
+
+    >
+          <mat-button-toggle
+          [checked]="!isTransitBolus"
+          value="false">
+            NO
+          </mat-button-toggle>
+          <mat-button-toggle
+          [checked]="isTransitBolus"
+          value="true">
+            YES
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-card>
+
+      <!-- scan delay -->
+
+      <mat-form-field class="mat-elevation-z10"
+      appearance="none"
+      style="border-radius: 4px; grid-column: 4;grid-row: 3;
+      background-color: white;
+      padding: 5px;
+      height: 90px;
+      max-height: 200px;
+      width: 175px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #41505b;
+      " [@fadeInUp]="fadeInUp">
+        <mat-label style="width: 175px;
+        height: 60px;
+        padding-bottom: 8px;
+margin-left:20px ;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 2.46;
+        letter-spacing: 0px;
+        color: #41505b;">Scan Delay</mat-label>
+        <mat-select style="
+               max-height: 700px;
+    margin-left: 20px;
+    width: 145px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+        " [required]='true'>
+
+          <mat-option *ngFor="let limitValue of PressureLimits" [value]="limitValue" style="
+font-weight: bold;
+text-align: center;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 12px;
+font-size: 15px;
+width: 180px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.6;
+  letter-spacing: -0.02px;
+  text-align: center;
+  color: #41505b;
+border-radius: 4px;
+background-color: #b9c7d233;">
+            {{limitValue}}
+          </mat-option>
+
+        </mat-select>
+        <mat-error *ngIf="contrastControl.hasError('required')">Please select the contrast</mat-error>
+      </mat-form-field>
+
+      <mat-divider class="mat-elevation-z8" style="
+      opacity: 0.8;
+      grid-row: 4;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      width: 920px;
+      height: 1px;
+      margin: 5px;
+      border-right-width: 1px;
+      border-color:#7797ae;
+      "></mat-divider>
+
+      <!-- other data label -->
+
+      <label [@fadeInLeft]="fadeInLeft" style="
+grid-column: 1;
+grid-row:4;
+margin-top: 25px;
+margin-left:35px ;
+height: 18px;
+opacity: 0.8;
+font-size: 15px;
+font-weight: bold;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.2;
+letter-spacing: 0.21px;
+color: #41505b;">Other data</label>
+
+
+      <!-- height -->
+      <mat-card matRipple [@fadeInUp]="fadeInUp" (click)="openNumPad('height');" style="
+      margin-left: 35px;
+            grid-column: 1;
+            grid-row: 5;
+            display: grid;
+            border-color: transparent;
+            background-color: white;
+            grid-template-rows: auto auto;
+            height: 70px;
+    width: 155px;
+            " class="mat-elevation-z10">
+        <label [@fadeInLeft]="fadeInLeft" style="
+  grid-row: 1;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0px;
+  color: #41505b;" required='true'>Height</label>
+        <label [@fadeInLeft]="fadeInLeft" style="
+  grid-row: 2;
+  margin-left: 10px;
+  font-size: 25px;
+   font-weight: lighter;
+   font-stretch: normal;
+   font-style: normal;
+   letter-spacing: 0px;
+   color: #41505b;" required='true'>{{SelectedPatient.PatientHeight}} in</label>
+      </mat-card>
+
+      <!-- weight -->
+      <mat-card matRipple [@fadeInDown]="fadeInDown"
+       (click)="openNumPad('weight');"
+        style="margin-left: 25px;
+        grid-column: 2;
+        grid-row: 5;
+        display: grid;
+        border-color: transparent;
+        background-color: white;
+        grid-template-rows: auto auto;
+        height: 70px;
+    width: 155px;
+        " class="mat-elevation-z10">
+        <label [@fadeInLeft]="fadeInLeft" style="
+grid-row: 1;
+margin-top: 10px;
+margin-left: 10px;
+font-size: 15px;
+font-weight: bold;
+font-stretch: normal;
+font-style: normal;
+letter-spacing: 0px;
+color: #41505b;" required='true'>Weight</label>
+        <label [@fadeInLeft]="fadeInLeft" style="
+grid-row: 2;
+margin-left: 10px;
+font-size: 25px;
+font-weight: lighter;
+font-stretch: normal;
+font-style: normal;
+letter-spacing: 0px;
+color: #41505b;" required='true'>{{SelectedPatient.PatientWeight}} lbs</label>
+      </mat-card>
+
+       <!-- eGFR -->
+       <!-- add this later (click)="openNumPad('egfr');"  -->
+       <mat-card matRipple [@fadeInUp]="fadeInUp"
+       style="margin-left: 10px;
+       grid-column: 3;
+       grid-row: 5;
+       display: grid;
+       border-color: transparent;
+       background-color: white;
+       grid-template-rows: auto auto;
+       height: 70px;
+   width: 155px;
+       " class="mat-elevation-z10">
+       <label [@fadeInLeft]="fadeInLeft" style="
+grid-row: 1;
+margin-top: 10px;
+margin-left: 10px;
+font-size: 15px;
+font-weight: bold;
+font-stretch: normal;
+font-style: normal;
+letter-spacing: 0px;
+color: #41505b;" required='true'>eGFR<label style=" font-size: 18px;
+    font-weight: bold;
+    color: red;
+    ">*</label></label>
+       <label [@fadeInLeft]="fadeInLeft" style="
+grid-row: 2;
+margin-left: 10px;
+font-size: 25px;
+font-weight: lighter;
+font-stretch: normal;
+font-style: normal;
+letter-spacing: 0px;
+color: #41505b;" required='true'>{{eGfr}} </label>
+     </mat-card>
+      <!-- kvp -->
+     <mat-form-field class="mat-elevation-z10"
+     appearance="none"
+     style="
+     border-radius: 4px;
+     grid-column: 4;
+     grid-row: 5;
+      background-color: white;
+      padding: 5px;
+
+      height: 90px;
+      max-height: 200px;
+      width: 175px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #41505b;
+      " [@fadeInDown]="fadeInDown">
+        <mat-label style="width: 175px;
+        height: 60px;
+        padding-bottom: 8px;
+margin-left:20px ;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 2.46;
+        letter-spacing: 0px;
+        color: #41505b;">kVp</mat-label>
+        <mat-select style="
+                max-height: 700px;
+    margin-left: 20px;
+    width: 145px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+        "
+        [required]='true'
+        >
+
+          <mat-option *ngFor="let kvpValue of kVpValues" [value]="kvpValue" style="
+font-weight: bold;
+text-align: center;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 12px;
+font-size: 15px;
+width: 180px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.6;
+  letter-spacing: -0.02px;
+  text-align: center;
+  color: #41505b;
+border-radius: 4px;
+background-color: #b9c7d233;">
+            {{kvpValue}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
 
     <!-- priors and availables main grid-->
     <mat-radio-group *ngIf="IsProtocolSelectionActive" aria-label="Select an option" (change)="planSelected($event)"
@@ -182,14 +625,12 @@ font-size: 15px;
       margin-left:35px ;
       font-size: 32px;
       font-weight: bold;
-
       font-style: normal;
       color: #465b6b;">Select Injection Protocol</label>
 
 
 
       <div style="display: grid;
-
       margin-left: 35px;
       grid-template-columns: 300px 500px;
       ">
@@ -211,8 +652,6 @@ font-size: 15px;
         border-color:#7797ae;
         "></mat-divider>
           <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" style="max-height: 500px;">
-
-
             <div *ngFor="let priorProtocol of PatientPriorsList" style="
             width: 28px;
             height: 100px;
@@ -285,7 +724,7 @@ font-size: 15px;
 
                 <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true"
                   (closed)="panelOpenState = false" style="width:500px"
-                  [expanded]=" protocol[0]===SelectedProtocolForExpander.anatomicalRegion">
+                  [expanded]=" SelectedProtocolForExpander.anatomicalRegion===protocol[0]">
                   <mat-expansion-panel-header [collapsedHeight]="'60px'" style=" height: auto; ">
                     <mat-panel-title style="width: 179px;
               height: 50px;
@@ -321,14 +760,7 @@ font-size: 15px;
       </div>
     </mat-radio-group>
 
-
-
-
-
-
-
-
-    <!-- 3 rd -->
+    <!-- 3 rd  part of screen-->
     <!-- preview panel -->
     <div style="grid-column: 2;
       background-color:#eceff4;
@@ -470,8 +902,10 @@ font-size: 15px;
         line-height: normal;
         letter-spacing: 0px;
         color: #465b6b;">Pressure Limit ({{PressureUnit}})</mat-label>
-        <mat-select style="max-height: 700px; margin-left: 10px; width: 373px;  ">
-
+        <mat-select
+        [compareWith]="comparePressureLimits"
+        [value]="SelectedPressureValue"
+        style="max-height: 700px; margin-left: 10px; width: 373px;  ">
           <mat-option *ngFor="let limitValue of PressureLimits" [value]="limitValue" style="
 font-weight: bold;
 text-align: center;
@@ -490,7 +924,6 @@ border-radius: 4px;
 background-color: #b9c7d233;">
             {{limitValue}}
           </mat-option>
-
         </mat-select>
       </mat-form-field>
 
@@ -547,7 +980,7 @@ background-color: #b9c7d233;">
             <div *ngFor="let phase of step.phases" style="display: grid;
             margin-top: 10px;
             width: 440px;
-
+            height: 30px;
             grid-template-columns: 1fr  1fr  1fr  1fr;
             ">
               <mat-icon *ngIf="phase.contrastRatio==0" svgIcon="saline-icon" style="
@@ -592,13 +1025,20 @@ background-color: #b9c7d233;">
                  color:#41505b;
                 "> pause_circle_outline</mat-icon>
               <span
-                style="grid-column: 2;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.volume}}</span>
+              *ngIf="phase.type!=3 && phase.type!=2"
+                style="grid-column: 3; grid-row: 1; justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.volume}}</span>
               <span
-                style="grid-column: 3;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.flowRate}}</span>
+              *ngIf="phase.type!=3 && phase.type!=2"
+                style="grid-column: 2; grid-row: 1;  justify-self: center; font-size: 18px;  color: #41505b; font-weight: bold;">{{phase.flowRate}}</span>
 
-              <span
+              <span *ngIf="phase.type!=3"
                 style="grid-column: 4;   justify-self: center; font-size: 18px;   color: #7797ae; font-weight: normal;">
                 {{phase.durationTicks | ticksToDatePipe: 1 | date:'mm:ss' }}</span>
+
+                <span *ngIf="phase.type===3"
+                style="grid-column: 4;   justify-self: center; font-size: 18px;   color: #7797ae; font-weight: normal;">
+                {{phase.pauseSeconds | ticksToDatePipe: 2 | date:'mm:ss' }}</span>
+
 
 
 

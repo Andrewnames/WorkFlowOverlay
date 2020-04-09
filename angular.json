@@ -5,7 +5,11 @@
   "projects": {
     "Overlay": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "less"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -24,9 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "./node_modules/aos/dist/aos.css",
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": []
           },
@@ -127,5 +129,10 @@
   "defaultProject": "Overlay",
   "cli": {
     "analytics": "d10ffda3-acb4-44fa-bd11-d242fe9df6cb"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "less"
+    }
   }
 }

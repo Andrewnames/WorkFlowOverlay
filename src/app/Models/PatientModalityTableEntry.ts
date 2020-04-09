@@ -8,5 +8,7 @@ export interface PatientModalityTableEntry {
   PatientStudyDescription: string;
   PatientAge: number;
   PatientGender: string;
+  PatientHeight?: number;
+  PatientWeight?: number;
 
 }

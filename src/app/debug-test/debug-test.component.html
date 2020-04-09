@@ -1,0 +1,13 @@
+
+<div style="width: 1366px;height: 700px; display: flex; flex-direction: column; justify-content: flex-start;">
+    <br>
+    <label>Send Test Message :</label>
+    <textarea style="width: 400px;" [(ngModel)]="testMessageContent" placeholder="Enter Test Message.."></textarea>
+    <br>
+    <button [disabled]="testMessageContent == undefined || testMessageContent.length == 0" 
+            style="width: 150px;" mat-flat-button color="primary" 
+            (click)="onTestMessageSendClick()">Send Test Data</button>
+    <h3>Receive Message Here : </h3>
+    <h4>{{notificationContent}}</h4>
+</div>
+

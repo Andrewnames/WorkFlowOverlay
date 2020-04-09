@@ -1,6 +1,18 @@
 import { PhaseType } from "./PhaseType.enum";
 export class ProtocolPhase {
 
+
+
+
+  private _orderIndex: number;
+  public get orderIndex(): number {
+    return this._orderIndex;
+  }
+  public set orderIndex(v: number) {
+    this._orderIndex = v;
+  }
+
+
   private _flowRate: number;
   public get flowRate(): number {
     return this._flowRate;

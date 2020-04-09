@@ -1,0 +1,77 @@
+@overlayGray: #7797aeb4;
+@overlayLightGray: #7797ae;
+@overlayDarkGray: #465b6b;
+@white: white;
+
+ng-scrollbar {
+  --scrollbar-size: 5px;
+  --scrollbar-thumb-color: @overlayGray;
+  --scrollbar-border-radius: 4px;
+}
+
+.availablesList {
+  grid-column: 2;
+  justify-self: stretch;
+  height: 500px;
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.78;
+  letter-spacing: 0.23px;
+  margin-left: 50px;
+  margin-right: 50px;
+  color: @overlayDarkGray;
+}
+
+.availableProtocolLabel {
+  width: 430px;
+  height: 50px;
+  color: @overlayDarkGray;
+  font-size: 16px;
+  font-weight: inherit;
+  line-height: 3em;
+}
+
+.fadedScroller_fade {
+  content: "";
+  margin-top: -100px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(251, 251, 251, 1) 0%,
+    rgba(251, 251, 251, 0) 100%
+  );
+  position: relative;
+}
+
+.mat-button-toggle {
+  background-color: @overlayLightGray;
+  color: @white;
+  font-size: 13px;
+  line-height: 0.6em;
+  font-weight: 400;
+  width: 250px;
+}
+
+.mat-button-toggle-checked {
+  stroke: green;
+  stroke-width: 2px;
+  font-size: 20px;
+  line-height: 0.6em;
+  font-weight: 800;
+  width: 250px;
+  color: @white;
+  background-color: @overlayDarkGray;
+}
+
+.mat-button-toggle-disabled {
+  font-size: 17px;
+  line-height: 3.6em;
+  font-weight: 200;
+  width: 250px;
+  opacity: 0.5;
+  letter-spacing: 0.27;
+  color: @white;
+  background-color: transparent;
+}

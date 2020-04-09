@@ -4,7 +4,7 @@ export enum AnatomicalRegion {
   Chest,
   Abdomen,
   Extremeties,
-  P3T
+  P3T,
 
 
 
