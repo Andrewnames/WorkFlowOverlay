@@ -63,7 +63,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
-    "electron": "^8.0.0",
+    "electron": "^11.5.0",
     "electron-builder": "^22.3.2",
     "electron-installer-snap": "^5.0.0",
     "electron-packager": "^14.2.1",
